@@ -32,7 +32,7 @@
  * + void
  */
 static inline void 
-  susciBoot(void);
+  susciBoot (void);
 
 /*
  * Description
@@ -46,7 +46,7 @@ static inline void
  * + void
  */
 static inline void 
-  susciPanic(void);
+  susciPanic (void);
 
 /*
  * Description
@@ -59,22 +59,22 @@ static inline void
  * + void
  */
 int 
-  main(void)
+	main(void)
 {
     /* Init all modules */
-    platformInit();
-    schedulerInit();
-    susciBoot();
+    platformInit ();
+    schedulerInit ();
+    susciBoot ();
 
     /* Run scheduler */
-    while(schedulerLoop() == GOOD)
+    while (schedulerLoop () == GOOD)
         
         /* Wake up functions if time has elapsed */ 
-        periodicWakeUp();
+        periodicWakeUp ();
 
     /* If scheduler return error, run panic function */
-    susciPanic();
+    susciPanic ();
 
     /* And freezee */
-    while(true);
+    while (true);
 }

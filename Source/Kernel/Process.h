@@ -65,6 +65,6 @@ typedef struct{
     void *parameter;
 
     /* Process worker */
-    ExecState (*worker)(void*);
+    ExecState (*worker) (void*);
 
 } Process;

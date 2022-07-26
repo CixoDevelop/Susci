@@ -30,17 +30,17 @@
  * + SystemTick how_long: Indicates how long the process is to be suspended
  */
 static void 
-  wait(SystemTick how_long)
+	wait (SystemTick how_long)
 {
     /* Suspend current process */
     current_process->state = TIMER;
 
     /* Get system time and how much is left to rewind */
-    SystemTick actual_time = getTime();
+    SystemTick actual_time = getTime ();
     SystemTick rewind = MAX_SYSTEM_TIME - actual_time;
     
     /* Calculate the moment in time when the quest can be suspended */
-    if(rewind < how_long)
+    if (rewind < how_long)
         current_process->factor = how_long - rewind;
     else
         current_process->factor = actual_time + how_long;
@@ -59,7 +59,7 @@ static void
  * + void
  */
 static inline void
-  periodicWakeUp(void)
+	periodicWakeUp (void)
 {
 	/* Variable for storing timestamp */
 	static SystemTick latest = 0x0000;

@@ -30,7 +30,7 @@
  * + Signal id: The signal that the process will be waiting for
  */
 static void 
-  waitForSignal(Signal id)
+	waitForSignal (Signal id)
 {
     /* Suspend process */
     current_process->state = SIGNAL;
@@ -52,10 +52,10 @@ static void
  * + Signal id: The signal that the process will be waiting for
  */
 static ExecState
-  toWaitForSignal(PID to_wait, Signal id)
+	toWaitForSignal (PID to_wait, Signal id)
 {
     /* If process does not exist, return PANIC*/
-    if(process_heap[to_wait].state == EMPTY)
+    if (process_heap[to_wait].state == EMPTY)
         return PANIC;
 
     /* Suspend it */
@@ -79,7 +79,7 @@ static ExecState
  * + Signal id: Signal to be called
  */
 static void 
-  makeSignal(Signal id)
+	makeSignal (Signal id)
 {
     /* Call signal */
     current_signal_id = id;
@@ -96,7 +96,7 @@ static void
  * + void
  */
 static void 
-  sleep(void)
+	sleep (void)
 {
     /* Suspend current process */
     current_process->state = WAITING;
@@ -114,10 +114,10 @@ static void
  * + PID to_sleep: PID of process to set
  */
 static ExecState 
-  toSleep(PID to_sleep)
+	toSleep (PID to_sleep)
 {
     /* If process not exist, return PANIC */
-    if(process_heap[to_sleep].state == EMPTY)
+    if (process_heap[to_sleep].state == EMPTY)
         return PANIC;
     
     /* Suspend process */
@@ -139,10 +139,10 @@ static ExecState
  * + PID to_wake_up: PID of process to set
  */
 static ExecState
-  wakeUp(PID to_wake_up)
+	wakeUp (PID to_wake_up)
 {
     /* If process is not suspend, return PANIC */
-    if(process_heap[to_wake_up].state != WAITING)
+    if (process_heap[to_wake_up].state != WAITING)
         return PANIC;
 
     /* Set process to READY */

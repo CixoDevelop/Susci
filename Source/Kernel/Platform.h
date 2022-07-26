@@ -32,7 +32,7 @@
  * + void
  */
 static inline void 
-  platformInit(void);
+	platformInit (void);
 
 /*
  * Description
@@ -46,7 +46,7 @@ static inline void
  * + void
  */
 static SystemTick 
-  getTime(void);
+	getTime (void);
 
 /*
  * Sets a flag indicating that the platform file has been included.

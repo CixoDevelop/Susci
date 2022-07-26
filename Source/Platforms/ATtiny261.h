@@ -40,7 +40,7 @@ typedef uint16_t SystemTick;
  * + void
  */
 static inline void 
-  platformInit(void)
+	platformInit (void)
 {
     /* Run timer in 16 bit mode */
     TCCR0A = (1 << TCW0);
@@ -61,13 +61,13 @@ static inline void
  * + void
  */
 static SystemTick 
-  getTime(void)
+    getTime (void)
 {
     /* Save SREG */
     uint8_t sreg = SREG;
     
     /* Disable interrupt */
-    cli();
+    cli ();
     
     /* Get TCNT0 */
     SystemTick actual_time = TCNT0L;

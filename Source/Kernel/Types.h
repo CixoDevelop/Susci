@@ -30,7 +30,7 @@
 
 /* Logical */
 #ifndef bool
-	typedef enum{
+	typedef enum {
 		true = 1,
 		false = 0
 	} bool;

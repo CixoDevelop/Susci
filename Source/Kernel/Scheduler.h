@@ -92,14 +92,14 @@ static PID
  * + void *parameter: Parameter for worker
  */
 static ExecState 
-  createProcess(PID priority, ExecState (*worker)(void*), void *parameter)
+	createProcess (PID priority, ExecState (*worker)(void*), void *parameter)
 {
     /* Priority out of range */
-    if(priority > MAX_PID)
+    if (priority > MAX_PID)
         return PANIC;
 
     /* Occupied priority */
-    if(process_heap[priority].state != EMPTY)
+    if (process_heap[priority].state != EMPTY)
         return PANIC;
 
     /* Create process and return GOOD */
@@ -121,7 +121,7 @@ static ExecState
  * + void
  */
 static void
-  killCurrentProcess(void)
+	killCurrentProcess (void)
 {
     /* Mark current process to EMPTY */
     current_process->state = EMPTY;
@@ -139,10 +139,10 @@ static void
  * + PID to_kill: PID of process to end
  */
 static ExecState
-  killProcess(PID to_kill)
+	killProcess (PID to_kill)
 {
     /* If process not exist, return PANIC */
-    if(process_heap[to_kill].state == EMPTY)
+    if (process_heap[to_kill].state == EMPTY)
         return PANIC;
     
     /* Mark process to EMPTY */
@@ -164,10 +164,10 @@ static ExecState
  * + void
  */
 static inline void 
-  schedulerInit(void)
+	schedulerInit (void)
 {
     /* Set all process as EMPTY */
-    for(uint8_t actual = MAX_PID - 1; actual > 0; actual --)
+    for (uint8_t actual = MAX_PID - 1; actual > 0; actual --)
         process_heap[actual].state = EMPTY;
 
     /* Clean system signal */
