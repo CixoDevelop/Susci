@@ -24,6 +24,11 @@
 #define MAX_PID PROCESS_HEAP_SIZE - 1
 
 /*
+ * Define full process heap expection 
+ */
+#define FULL_PROCESS_HEAP PROCESS_HEAP_SIZE
+
+/*
  * Heap of operating system processes with a size defined statically by the 
  * user or in default settings.
  */
@@ -41,6 +46,35 @@ Process *current_process;
  * in the system.
  */
 Signal current_signal_id;
+
+/*
+ * Description
+ * + This function searching first empty PID, and return it. If process heap
+ * + is full, returned magic number (FULL_PROCESS_HEAP)
+ *  
+ * Return: 2
+ * + FULL_PROCESS_HEAP: Process heap is full, can't found empty
+ * + PID: Empty PID for new process
+ *
+ * Params: 0
+ * + void
+ */
+static PID
+	getFirstEmpty (void)
+{
+	/* Set PID for top of process list */
+	PID empty = PROCESS_HEAP_SIZE;
+
+	/* File not on bottom */
+	while (empty --) 
+
+		/* If PID is empty, return it */
+		if (process_heap[empty].state == EMPTY)
+			return empty;
+
+	/* If heap is full, return exception */
+	return FULL_PROCESS_HEAP;
+}
 
 /*
  * Description
@@ -142,54 +176,125 @@ static inline void
 
 /*
  * Description
+ * + This function is the signal system scheduler, if system signal flag is 
+ * + set, then searching processes with SIGNAL state with same signal id, 
+ * + then run it, and return it state.
+ *
+ * Return: 2 
+ * + GOOD: Everything went well
+ * + IDLE: Not did anything
+ * + PANIC: Any process return PANIC 
+ *
+ * Params: 0
+ * + void
+ */
+static inline ExecState
+	signalScheduler (void)
+{
+	/* Check signal, if off, return */
+	if (current_signal_id == 0x00)
+		return IDLE;
+
+	/* Create local signal copy, and remove original */
+	Signal signal = current_signal_id;
+	current_signal_id = 0x00;
+
+	/* Set current process for loop */
+	current_process = process_heap + PROCESS_HEAP_SIZE;
+
+	/* Run on all processes */
+	while (current_process -- > process_heap) {
+		
+		/* If process is not in signal state, skip it */
+		if (current_process->state != SIGNAL)
+			continue;
+
+		/* If process signal is not same, skip it */
+		if (current_process->factor != signal)
+			continue;
+		
+		/* Run process and save result */
+		ExecState return_state 
+			= current_process->worker (current_process->parameter);
+
+		/* If process not did anything, check next */
+		if (return_state == IDLE)
+			continue;
+		
+		/* Return process state */
+		return return_state;
+	}
+
+	/* If all processes not did anythong, return GOOD */
+	return GOOD;
+}
+
+/*
+ * Description
+ * + This function is the system standard scheduler, searching any process in 
+ * + READY state, if exist, run it and returns result, if any process does not
+ * + have READY state, return GOOD.
+ *
+ * Return: 2 
+ * + GOOD: Everything went well
+ * + PANIC: Any process return PANIC 
+ *
+ * Params: 0
+ * + void
+ */
+static inline ExecState
+	standardScheduler (void)
+{
+	/* Set process for loop */
+	current_process = process_heap + PROCESS_HEAP_SIZE;
+
+	/* Run on all processes */
+	while (current_process -- > process_heap) {
+
+		/* If process is not ready, go to next */
+		if (current_process->state != READY)
+			continue;
+
+		/* If ready, run them and save state */
+		ExecState process_state = 
+			current_process->worker (current_process->parameter);
+
+		/* If process not did anything, check next */
+		if (process_state == IDLE)
+			continue;
+
+		/* Return state of process */
+		return process_state;
+	}
+
+	/* If any process not be ready, return good state */
+	return GOOD;
+}
+
+/*
+ * Description
  * + This function is the system scheduler, responsible for calling the
  * + appropriate process. If everything went well, it will return GOOD, but if
  * + it was not successful, it will return PANIC. The loader will then call the
  * + the susciPanic function.
  *
- * Return: 0
- * + void
+ * Return: 2 
+ * + GOOD: Everything went well
+ * + PANIC: Any process return PANIC 
  *
  * Params: 0
  * + void
  */
 static inline ExecState 
-  schedulerLoop(void)
+  schedulerLoop (void)
 {   
-    /* Set the current process to the one with the highest PID */
-    current_process = process_heap + PROCESS_HEAP_SIZE;
+	/* Check signals first */
+    ExecState signal = signalScheduler ();
 
-    /* If there was any signal */
-    if(current_signal_id){
+	/* If signals not did anything */
+	if (signal != IDLE)
+		return signal;
 
-        /* Search the entire heap of processes */
-        while(--current_process >= process_heap)
-
-            /* In search of those who are waiting for this signal */
-            if(
-                current_process->state == SIGNAL &&
-                current_process->factor == (Signal) current_signal_id
-              )
-
-                /* And then do them */
-                if(current_process->worker(current_process->parameter) != GOOD)
-
-                    /* If something went wrong, please return PANIC */
-                    return PANIC;
-
-        /* Finally, reset the signal */
-        current_signal_id = 0x00;
-
-        /* And return from function */
-        return GOOD;
-    }
-
-    /* If there was not any signal */
-    while(--current_process >= process_heap)
-
-        /* Find first READY process */
-        if(current_process->state == READY)
-
-            /* And run it */
-            return current_process->worker(current_process->parameter);
+	/* Run something from standard heap */
+	return standardScheduler ();
 }

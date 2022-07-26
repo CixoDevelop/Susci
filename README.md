@@ -9,4 +9,12 @@ This project is an operating system for small non-MMU devices, currently mainly 
 ## Install for avr-gcc (Linux only)
 sudo ./Manager.py -i
 
-## Soon the documentation will be published and the number of MCUs running the system will be increased!
+## Latest update changes
+ * Added semaphores (down counting)
+ * Buffers added (default 8 bytes)
+ * CircularBuffers added (default 8 bytes)
+ * Added the ability for the process to return an IDLE, which is considered a failed, and although the process was in READY state, another one will be executed
+ * Scheduler has been broken down into smaller functions
+ * Time management improved
+
+## Then the project manager and documentation will be added

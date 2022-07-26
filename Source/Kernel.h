@@ -25,8 +25,8 @@
 #endif
 
 /* Define system version and revision */
-#define SUSCI_VERSION 22.5
-#define SUSCI_REVISION 12
+#define SUSCI_VERSION 22.7
+#define SUSCI_REVISION 26
 
 /* Include all system header files */
 #include "Kernel/Types.h"
@@ -36,3 +36,8 @@
 #include "Kernel/Interface.h"
 #include "Kernel/Time.h"
 #include "Kernel/Loader.h"
+
+/* Include synchronization files */
+#include "Synchronization/Buffer.h"
+#include "Synchronization/Semaphore.h"
+#include "Synchronization/CircularBuffer.h"

@@ -66,20 +66,11 @@ int
     schedulerInit();
     susciBoot();
 
-    /* Create time slot */
-    SystemTick open_time = 0x00;
-    SystemTick close_time = 0x00;
-
     /* Run scheduler */
-    while(schedulerLoop() == GOOD){
+    while(schedulerLoop() == GOOD)
         
         /* Wake up functions if time has elapsed */ 
-        periodicWakeUp(open_time, close_time);
-
-        /* Move time slot */
-        open_time = close_time;
-        close_time = getTime();
-    }
+        periodicWakeUp();
 
     /* If scheduler return error, run panic function */
     susciPanic();

@@ -44,6 +44,9 @@ typedef enum{
     /* All went well */
     GOOD,
 
+    /* Nothing was done */
+    IDLE,
+
     /* Something went bad */
     PANIC
 

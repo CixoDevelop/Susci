@@ -55,28 +55,39 @@ static void
  * Return: 0
  * + void
  *
- * Params: 2
- * + SystemTick open_time: Time of opening the time slot
- * + SystemTick close_time: Time of closing the time slot
+ * Params: 0
+ * + void
  */
 static inline void
-  periodicWakeUp(SystemTick open_time, SystemTick close_time)
+  periodicWakeUp(void)
 {
-    /* On all processes in the system */
-    for(
-        Process *to_wake_up = process_heap + MAX_PID;
-        to_wake_up >= process_heap;
-        to_wake_up --
-       )
-        if(
-            /* If process is suspend and If the process is in suspend state */
-            to_wake_up->state == TIMER &&
+	/* Variable for storing timestamp */
+	static SystemTick latest = 0x0000;
+	
+	/* Create timestamp */
+	SystemTick recent = latest;
+	latest = getTime ();
 
-            /* And the time it waits for is in the time slot */
-            to_wake_up->factor >= open_time &&
-            to_wake_up->factor <= close_time
-          )
+	/* If recent time is max, then revers */
+	if (recent == 0xFFFF && recent > latest)
+		recent = 0x0000;
 
-            /* Then wake up process */
-            to_wake_up->state = READY;
+	/* If timer has run out, correct */
+	if (recent > latest)
+		latest = 0xFFFF;
+
+	/* Set process pointer for loop */
+    Process *to_wake_up = process_heap + PROCESS_HEAP_SIZE;
+
+	/* Check all processes */
+	while (to_wake_up -- > process_heap) {
+
+		/* If process is not in TIMER state, skip */
+		if (to_wake_up->state != TIMER)
+			continue;
+
+		/* If process timestamp is in current timestamp, mark READY */
+		if (to_wake_up->factor >= recent && to_wake_up->factor <= latest)
+			to_wake_up->state = READY;
+	}
 }
