@@ -17,4 +17,4 @@ sudo ./Manager.py -i
  * Scheduler has been broken down into smaller functions
  * Time management improved
 
-## Then the project manager and documentation will be added
+## The project manager will be recreated and documentation will be added
