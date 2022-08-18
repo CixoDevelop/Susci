@@ -10,6 +10,11 @@ This project is an operating system for small non-MMU devices, currently mainly 
 sudo ./Manager.py -i
 
 ## Latest update changes
+ * Addes shared memory 
+ * Added TWI slave support
+ * Added USI TWI slave implementation for AtTiny devices
+ 
+## Update 22.7 v26 changes
  * Added semaphores (down counting)
  * Buffers added (default 8 bytes)
  * CircularBuffers added (default 8 bytes)

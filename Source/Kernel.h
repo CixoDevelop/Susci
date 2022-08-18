@@ -2,11 +2,11 @@
  * This file is part of the Susci project, an ultra lightweight general purpose
  * operating system aimed at devices without an MMU module and with very little
  * RAM memory.
- * 
+ *
  * It is released under the terms of the MIT license, you can use Susca in your
- * projects, you just need to mention it in the documentation, manual or other 
+ * projects, you just need to mention it in the documentation, manual or other
  * such place.
- * 
+ *
  * Author: Cixo
  *
  *
@@ -25,8 +25,8 @@
 #endif
 
 /* Define system version and revision */
-#define SUSCI_VERSION 22.7
-#define SUSCI_REVISION 26
+#define SUSCI_VERSION 22.8
+#define SUSCI_REVISION 18
 
 /* Include all system header files */
 #include "Kernel/Types.h"
@@ -41,3 +41,18 @@
 #include "Synchronization/Buffer.h"
 #include "Synchronization/Semaphore.h"
 #include "Synchronization/CircularBuffer.h"
+#include "Synchronization/SharedMemory.h"
+
+/* Include Communication bus files *
+
+/* Files for support TWI bus */
+#ifdef USE_TWI_SLAVE
+
+    #include "Communication/TwiSlave.h"
+
+    /* Platform file specifies implementation of TWI to use */
+    #ifdef USE_TWI_SLAVE_TINY_IMPLEMENTATION
+        #include "Drivers/Integrated/TinyTwiSlave.h"
+    #endif
+
+#endif

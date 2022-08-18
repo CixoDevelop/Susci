@@ -2,15 +2,15 @@
  * This file is part of the Susci project, an ultra lightweight general purpose
  * operating system aimed at devices without an MMU module and with very little
  * RAM memory.
- * 
+ *
  * It is released under the terms of the MIT license, you can use Susca in your
- * projects, you just need to mention it in the documentation, manual or other 
+ * projects, you just need to mention it in the documentation, manual or other
  * such place.
- * 
+ *
  * Author: Cixo
  *
  *
- * This file stores declarations and definitions of data structures and 
+ * This file stores declarations and definitions of data structures and
  * functions responsibles for CircularBuffer in system.
  */
 
@@ -28,7 +28,7 @@ typedef struct {
 
     /* Reader position */
     uint8_t read_position;
-    
+
     /* Writer position */
     uint8_t write_position;
 
@@ -40,7 +40,7 @@ typedef struct {
 /*
  * Description
  * + This function creating empty circular buffer and returning it.
- *  
+ *
  * Return: 1
  * + CircularBuffer: New empty circular buffer
  *
@@ -57,7 +57,7 @@ static inline CircularBuffer
 /*
  * Description
  * + Write new data to circular buffer.
- *  
+ *
  * Return: 0
  * + void
  *
@@ -78,8 +78,8 @@ static void
 /*
  * Description
  * + Return data from buffer.
- *  
- * Return: 2
+ *
+ * Return: 1
  * + char: Data from buffer
  *
  * Params: 1
