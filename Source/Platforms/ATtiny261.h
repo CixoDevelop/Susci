@@ -80,8 +80,45 @@ static SystemTick
     return actual_time;
 }
 
+#define LOW_DDR &DDRB
+#define LOW_PIN &PINB
+#define LOW_PORT &PORTB
+#define LOW_PCMSK &PCMSK1
+
+#ifdef DIP_LAYOUT
+    #define PIN_1 0
+    #define PIN_2 1
+    #define PIN_3 2
+    #define PIN_4 3
+    #define PIN_5 ERROR_VCC
+    #define PIN_6 ERROR_GND
+    #define PIN_7 4
+    #define PIN_8 5
+    #define PIN_9 6
+    #define PIN_10 7
+    #define PIN_11 15
+    #define PIN_12 14
+    #define PIN_13 13
+    #define PIN_14 12
+    #define PIN_15 ERROR_AVCC
+    #define PIN_16 ERROR_GND
+    #define PIN_17 11
+    #define PIN_18 10
+    #define PIN_19 9
+    #define PIN_20 8
+#endif
+
+#include "../Drivers/Integrated/AvrPins.h"
+
+#define BYTE_EEPROM_ADDRESS
+#include "../Drivers/Integrated/AvrStorage.h"
+
 /* Catch bad ISR so no reset occurs */
 ISR (BADISR_vect) {}
+
+#ifdef USE_PINCHANGE_INTERRUPT
+    #define PINCHANGE_INTERRUPT_AVR
+#endif
 
 #ifdef USE_TWI_SLAVE
 

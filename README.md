@@ -9,7 +9,12 @@ This project is an operating system for small non-MMU devices, currently mainly 
 ## Install for avr-gcc (Linux only)
 sudo ./Manager.py -i
 
-## Latest update changes
+## Update 22.10 v4 changes (Latest)
+ * Added drivers for managment pins (AVR)
+ * Added Pinchange signal (AVR)
+ * Added ShiftRegister driver (AVR + 74HC595)
+
+## Update 22.8 v18 changes
  * Addes shared memory 
  * Added TWI slave support
  * Added USI TWI slave implementation for AtTiny devices

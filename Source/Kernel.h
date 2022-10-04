@@ -25,8 +25,8 @@
 #endif
 
 /* Define system version and revision */
-#define SUSCI_VERSION 22.8
-#define SUSCI_REVISION 18
+#define SUSCI_VERSION 22.10
+#define SUSCI_REVISION 4
 
 /* Include all system header files */
 #include "Kernel/Types.h"
@@ -42,8 +42,17 @@
 #include "Synchronization/Semaphore.h"
 #include "Synchronization/CircularBuffer.h"
 #include "Synchronization/SharedMemory.h"
+#include "Synchronization/Latch.h"
 
-/* Include Communication bus files *
+/* Include devices drivers */
+#include "Drivers/Register/ShiftRegister.h"
+
+/* Include interrupts */
+#ifdef PINCHANGE_INTERRUPT_AVR
+    #include "Drivers/Integrated/AvrPinchange.h"
+#endif
+
+/* Include Communication bus files */
 
 /* Files for support TWI bus */
 #ifdef USE_TWI_SLAVE
