@@ -6,10 +6,24 @@ This project is an operating system for small non-MMU devices, currently mainly 
  * Waiting for signal (may be from hardware interrupt)
  * Waiting for release by another process
 
-## Install for avr-gcc (Linux only)
-sudo ./Manager.py -i
 
-## Update 22.10 v4 changes (Latest)
+## How to use it?
+ * Clone this repo
+ * You can remove LICENSE, README.md
+ * Read core.c and select preferences
+ * Write Your code in core.c and project/
+ * Read descriptions and changes defaults values in make.sh
+ * Build it with make.sh
+ * Build docs with doxygen doxygen
+ * For start writing read docs, if you can not mean any element, write to me!
+
+## Update 22.10 v12 changes (Latest)
+ * Improved formatting for better, more standard
+ * Improving the file structure
+ * Documentation added (FINALLY AFTER LONG PROMISE)
+ * The current version allows you to work immediately on the cloned repository
+
+## Update 22.10 v4 changes
  * Added drivers for managment pins (AVR)
  * Added Pinchange signal (AVR)
  * Added ShiftRegister driver (AVR + 74HC595)
