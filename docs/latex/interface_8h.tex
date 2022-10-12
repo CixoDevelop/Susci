@@ -1,0 +1,113 @@
+\hypertarget{interface_8h}{}\doxysection{susci/kernel/interface.h File Reference}
+\label{interface_8h}\index{susci/kernel/interface.h@{susci/kernel/interface.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{interface_8h_a8e79d00047fa6200a633c3a09439fa29}{wait\+\_\+for\+\_\+signal}} (\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}} id)
+\item 
+static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} \mbox{\hyperlink{interface_8h_ac3c06213a7eef9b4473cb7e0264a337f}{to\+\_\+wait\+\_\+for\+\_\+signal}} (\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}} process, \mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}} signal\+\_\+id)
+\item 
+static void \mbox{\hyperlink{interface_8h_a9170dd6b2979b456395c39bbfdbf9a84}{make\+\_\+signal}} (\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}} signal\+\_\+id)
+\item 
+static void \mbox{\hyperlink{interface_8h_a5c651fd7acdcc22ef48e2dc95d1570f4}{sleep}} (void)
+\item 
+static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} \mbox{\hyperlink{interface_8h_a771f9bb7934700048753caaa7eab14de}{to\+\_\+sleep}} (\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}} process)
+\item 
+static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} \mbox{\hyperlink{interface_8h_a010c9f15ee0b48c696fcf5b3e71ea097}{wake\+\_\+up}} (\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}} process)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{interface_8h_a9170dd6b2979b456395c39bbfdbf9a84}\label{interface_8h_a9170dd6b2979b456395c39bbfdbf9a84}} 
+\index{interface.h@{interface.h}!make\_signal@{make\_signal}}
+\index{make\_signal@{make\_signal}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{make\_signal()}{make\_signal()}}
+{\footnotesize\ttfamily static void make\+\_\+signal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}}}]{signal\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                    \{}
+\DoxyCodeLine{50     \mbox{\hyperlink{scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}}= signal\_id;}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{interface_8h_a5c651fd7acdcc22ef48e2dc95d1570f4}\label{interface_8h_a5c651fd7acdcc22ef48e2dc95d1570f4}} 
+\index{interface.h@{interface.h}!sleep@{sleep}}
+\index{sleep@{sleep}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{sleep()}{sleep()}}
+{\footnotesize\ttfamily sleep (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+It puts the currently running process to sleep. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{56                                \{}
+\DoxyCodeLine{57     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}};}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{interface_8h_a771f9bb7934700048753caaa7eab14de}\label{interface_8h_a771f9bb7934700048753caaa7eab14de}} 
+\index{interface.h@{interface.h}!to\_sleep@{to\_sleep}}
+\index{to\_sleep@{to\_sleep}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{to\_sleep()}{to\_sleep()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} to\+\_\+sleep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}}}]{process }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64                                             \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state == \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{66     }
+\DoxyCodeLine{67     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}};}
+\DoxyCodeLine{68     }
+\DoxyCodeLine{69     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{interface_8h_ac3c06213a7eef9b4473cb7e0264a337f}\label{interface_8h_ac3c06213a7eef9b4473cb7e0264a337f}} 
+\index{interface.h@{interface.h}!to\_wait\_for\_signal@{to\_wait\_for\_signal}}
+\index{to\_wait\_for\_signal@{to\_wait\_for\_signal}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{to\_wait\_for\_signal()}{to\_wait\_for\_signal()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} to\+\_\+wait\+\_\+for\+\_\+signal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}}}]{process,  }\item[{\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}}}]{signal\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36                                                                           \{}
+\DoxyCodeLine{37     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state == \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a1510c195e40c14d3f857d213f7c4b877}{SIGNAL\_STATE}};}
+\DoxyCodeLine{40     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = (uint8\_t) signal\_id;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{interface_8h_a8e79d00047fa6200a633c3a09439fa29}\label{interface_8h_a8e79d00047fa6200a633c3a09439fa29}} 
+\index{interface.h@{interface.h}!wait\_for\_signal@{wait\_for\_signal}}
+\index{wait\_for\_signal@{wait\_for\_signal}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_signal()}{wait\_for\_signal()}}
+{\footnotesize\ttfamily static void wait\+\_\+for\+\_\+signal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\+\_\+t}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25                                          \{}
+\DoxyCodeLine{26     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a1510c195e40c14d3f857d213f7c4b877}{SIGNAL\_STATE}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = (uint16\_t) \textcolor{keywordtype}{id};}
+\DoxyCodeLine{29 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{interface_8h_a010c9f15ee0b48c696fcf5b3e71ea097}\label{interface_8h_a010c9f15ee0b48c696fcf5b3e71ea097}} 
+\index{interface.h@{interface.h}!wake\_up@{wake\_up}}
+\index{wake\_up@{wake\_up}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{wake\_up()}{wake\_up()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\+\_\+state\+\_\+t}} wake\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\+\_\+t}}}]{process }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                            \{}
+\DoxyCodeLine{77     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state != \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a8f383efff27b80ddb4ab5ffd6acfe51e}{READY\_STATE}};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}

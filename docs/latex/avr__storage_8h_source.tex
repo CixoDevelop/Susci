@@ -1,0 +1,52 @@
+\hypertarget{avr__storage_8h_source}{}\doxysection{avr\+\_\+storage.\+h}
+\label{avr__storage_8h_source}\index{susci/drivers/integrated/avr\_storage.h@{susci/drivers/integrated/avr\_storage.h}}
+\mbox{\hyperlink{avr__storage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other}}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores driver that is responsible for storing data in eeprom.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef DRIVERS\_INTEGRATED\_AVRSTORAGE\_H\_INCLUDED}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define DRIVERS\_INTEGRATED\_AVRSTORAGE\_H\_INCLUDED}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef BYTE\_EEPROM\_ADDRESS}}
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} uint16\_t \mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\_t}};}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} uint8\_t \mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\_t}};}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{35 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{avr__storage_8h_a356bbbf2d60bceefb8826666b74a235c}{storage\_write}}(\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\_t}} address, \textcolor{keywordtype}{char} data) \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{while} (EECR \& (1 << EEPE)) ;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     EECR = (0 << EEPM1) | (0 << EEPM0);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     EEAR = address;}
+\DoxyCodeLine{41     EEDR = data;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     EECR |= (1 << EEMPE);}
+\DoxyCodeLine{44     EECR |= (1 << EEPE);}
+\DoxyCodeLine{45 \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{52 \textcolor{keyword}{static} \textcolor{keywordtype}{char} \mbox{\hyperlink{avr__storage_8h_a05fab46edfee934d0cbea0d53dcd6d96}{storage\_read}}(\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\_t}} address) \{}
+\DoxyCodeLine{53     \textcolor{keywordflow}{while} (EECR \& (1 << EEPE)) ;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     EEAR = address;}
+\DoxyCodeLine{56     EECR |= (1 << EERE);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordflow}{return} EEDR;}
+\DoxyCodeLine{59 \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

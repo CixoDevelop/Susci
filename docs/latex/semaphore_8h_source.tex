@@ -1,0 +1,64 @@
+\hypertarget{semaphore_8h_source}{}\doxysection{semaphore.\+h}
+\label{semaphore_8h_source}\index{susci/synchronization/semaphore.h@{susci/synchronization/semaphore.h}}
+\mbox{\hyperlink{semaphore_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other }}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores declarations and definitions of data structures and }}
+\DoxyCodeLine{14 \textcolor{comment}{ * functions responsibles for standard Semaphore in system.}}
+\DoxyCodeLine{15 \textcolor{comment}{ */}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifndef COMMUNICATION\_SEMAPHORE\_H\_INCLUDED}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define COMMUNICATION\_SEMAPHORE\_H\_INCLUDED}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{23 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{comment}{/* Current semaphore state */}}
+\DoxyCodeLine{26     uint8\_t \mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{/* Max semaphore state */}}
+\DoxyCodeLine{29     uint8\_t \mbox{\hyperlink{structsemaphore__t_a508720491bbc97b5342d4922494b1f76}{max\_state}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \} \mbox{\hyperlink{structsemaphore__t}{semaphore\_t}};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{structsemaphore__t}{semaphore\_t}} \mbox{\hyperlink{semaphore_8h_a0c4bf9fd0478995f31a5c8d662c258e2}{create\_semaphore}}(uint8\_t max\_state) \{}
+\DoxyCodeLine{38     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structsemaphore__t}{semaphore\_t}}) \{max\_state, max\_state\};}
+\DoxyCodeLine{39 \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{47 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{semaphore_8h_aa21ecfc7374f1d3b4cb813fc725866f7}{down\_semaphore}}(\mbox{\hyperlink{structsemaphore__t}{semaphore\_t}} *semaphore) \{}
+\DoxyCodeLine{48     \textcolor{keywordflow}{if} (semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}} == 0) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}} -\/-\/;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{53 \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{61 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{semaphore_8h_a6df0b183d47f8e0a8bb2d8f6909e5bbf}{up\_semaphore}}(\mbox{\hyperlink{structsemaphore__t}{semaphore\_t}} *semaphore) \{}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if} (semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}} >= semaphore-\/>\mbox{\hyperlink{structsemaphore__t_a508720491bbc97b5342d4922494b1f76}{max\_state}}) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{63     }
+\DoxyCodeLine{64     semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}} ++;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{67 \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73 \textcolor{keyword}{static} \textcolor{keyword}{inline} uint8\_t \mbox{\hyperlink{semaphore_8h_ad31324574e95e9bcf303cfc0004051c1}{get\_semaphore\_state}}(\mbox{\hyperlink{structsemaphore__t}{semaphore\_t}} *semaphore) \{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}};}
+\DoxyCodeLine{75 \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{81 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{semaphore_8h_a205bc3b901ded15309fc675fadd729ac}{reset\_semaphore}}(\mbox{\hyperlink{structsemaphore__t}{semaphore\_t}} *semaphore) \{}
+\DoxyCodeLine{82     semaphore-\/>\mbox{\hyperlink{structsemaphore__t_aad9fa92d5f762010b9da3d35b0d9a0e7}{state}} = semaphore-\/>\mbox{\hyperlink{structsemaphore__t_a508720491bbc97b5342d4922494b1f76}{max\_state}};}
+\DoxyCodeLine{83 \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

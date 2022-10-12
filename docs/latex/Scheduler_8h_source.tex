@@ -1,0 +1,147 @@
+\hypertarget{Scheduler_8h_source}{}\doxysection{Scheduler.\+h}
+\label{Scheduler_8h_source}\index{Susci/Kernel/Scheduler.h@{Susci/Kernel/Scheduler.h}}
+\mbox{\hyperlink{Scheduler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other }}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores the system scheduler, process heap, and other items needed}}
+\DoxyCodeLine{14 \textcolor{comment}{ * for the running of the system kernel.}}
+\DoxyCodeLine{15 \textcolor{comment}{ */}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef KERNEL\_SCHEDULER\_H\_INCLUDED}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define KERNEL\_SCHEDULER\_H\_INCLUDED}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define MAX\_PID PROCESS\_HEAP\_SIZE -\/ 1}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define FULL\_PROCESS\_HEAP PROCESS\_HEAP\_SIZE}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define MAX\_PRIORITY\_PROCESS process\_heap + MAX\_PID}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define MIN\_PRIORITY\_PROCESS process\_heap}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46 \mbox{\hyperlink{structprocess__t}{process\_t}} \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[\mbox{\hyperlink{DefaultSettings_8h_a6f363716dc292fe43b665809b9f724e9}{PROCESS\_HEAP\_SIZE}}];}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{52 \mbox{\hyperlink{structprocess__t}{process\_t}} *\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59 \mbox{\hyperlink{Types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}} \mbox{\hyperlink{Scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{66 \textcolor{keyword}{static} \mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} \mbox{\hyperlink{Scheduler_8h_aaa1a1333ef89c2371c7b9c150f48f8b8}{get\_first\_empty}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{67     \mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} empty\_process\_pid = \mbox{\hyperlink{DefaultSettings_8h_a6f363716dc292fe43b665809b9f724e9}{PROCESS\_HEAP\_SIZE}};}
+\DoxyCodeLine{68     }
+\DoxyCodeLine{69     \textcolor{keywordflow}{while} (empty\_process\_pid-\/-\/) \{ }
+\DoxyCodeLine{70         \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[empty\_process\_pid].state == \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \{}
+\DoxyCodeLine{71             \textcolor{keywordflow}{return} empty\_process\_pid;}
+\DoxyCodeLine{72         \}}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordflow}{return} \mbox{\hyperlink{Scheduler_8h_a066ef5e451cae5a6858d01a52fda43a2}{FULL\_PROCESS\_HEAP}};}
+\DoxyCodeLine{76 \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{87 \textcolor{keyword}{static} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{Scheduler_8h_ae6382cc33ecc12e65b03fd6fe729d786}{create\_process}}(}
+\DoxyCodeLine{88     \mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} process\_pid,}
+\DoxyCodeLine{89     \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} (*worker)(\textcolor{keywordtype}{void}*), }
+\DoxyCodeLine{90     \textcolor{keywordtype}{void} *parameter}
+\DoxyCodeLine{91 ) \{}
+\DoxyCodeLine{92     \textcolor{keywordflow}{if} (process\_pid > \mbox{\hyperlink{Scheduler_8h_a36b11288ada38ae09b8033e32f738c3d}{MAX\_PID}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process\_pid].state != \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process\_pid].\mbox{\hyperlink{structprocess__t_af89fcf2abe8f35fd8543c8049a33654b}{worker}} = worker;}
+\DoxyCodeLine{97     \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process\_pid].\mbox{\hyperlink{structprocess__t_a714f63ea56069df96e8268cbde6406ff}{parameter}} = parameter;}
+\DoxyCodeLine{98     \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process\_pid].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854a8f383efff27b80ddb4ab5ffd6acfe51e}{READY\_STATE}};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{101 \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{106 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{Scheduler_8h_a0685c7e91a71454be4141fc70e324eb2}{kill\_current\_process}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{107     \mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}};}
+\DoxyCodeLine{108 \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{115 \textcolor{keyword}{static} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{Scheduler_8h_ab09238d6a7457d471a51813508a6a927}{kill\_process}}(\mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} to\_kill) \{}
+\DoxyCodeLine{116     \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[to\_kill].state == \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{117     }
+\DoxyCodeLine{118     \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[to\_kill].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{121 \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{127 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{Scheduler_8h_adaa8949819df9fcef28b31188811d65f}{scheduler\_init}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{128     \mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} current\_pid = \mbox{\hyperlink{Scheduler_8h_a36b11288ada38ae09b8033e32f738c3d}{MAX\_PID}};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     \textcolor{keywordflow}{while} (current\_pid-\/-\/) \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[current\_pid].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}; }
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \mbox{\hyperlink{Scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}} = 0x00;}
+\DoxyCodeLine{133 \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{140 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{Scheduler_8h_ac0e9c8944486d1101de37eb0a3111114}{signal\_scheduler}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{141     \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}} == 0x00) \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97aeca4500f6f729608a014643f8c8f4003}{IDLE\_STATE}};}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{comment}{/* }}
+\DoxyCodeLine{144 \textcolor{comment}{     * This make local copy of signal, bacause when signal ia processing, any }}
+\DoxyCodeLine{145 \textcolor{comment}{     * interrupt can change global signal flag}}
+\DoxyCodeLine{146 \textcolor{comment}{     */}}
+\DoxyCodeLine{147     \mbox{\hyperlink{Types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}} signal = \mbox{\hyperlink{Scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}};}
+\DoxyCodeLine{148     \mbox{\hyperlink{Scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}} = 0x00;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150     \textcolor{comment}{/*}}
+\DoxyCodeLine{151 \textcolor{comment}{     * This check all processes, all of it who has SIGNAL state had been}}
+\DoxyCodeLine{152 \textcolor{comment}{     * checked and these who had been marked for same signal will be executed}}
+\DoxyCodeLine{153 \textcolor{comment}{     */}}
+\DoxyCodeLine{154     \mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}} = \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}} + \mbox{\hyperlink{DefaultSettings_8h_a6f363716dc292fe43b665809b9f724e9}{PROCESS\_HEAP\_SIZE}};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{while} (\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/-\/ > \mbox{\hyperlink{Scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}) \{}
+\DoxyCodeLine{157         \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} != \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854a1510c195e40c14d3f857d213f7c4b877}{SIGNAL\_STATE}}) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159         \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} != signal) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{160         }
+\DoxyCodeLine{161         \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} return\_state }
+\DoxyCodeLine{162         = \mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_af89fcf2abe8f35fd8543c8049a33654b}{worker}}(\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a714f63ea56069df96e8268cbde6406ff}{parameter}});}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164         \textcolor{keywordflow}{if} (return\_state == \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97aeca4500f6f729608a014643f8c8f4003}{IDLE\_STATE}}) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{165         }
+\DoxyCodeLine{166         \textcolor{keywordflow}{return} return\_state;}
+\DoxyCodeLine{167     \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{170 \}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{177 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{Scheduler_8h_a09c2bbee3d3d137684fec619c5e524c2}{standard\_scheduler}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{178     \mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}} = \mbox{\hyperlink{Scheduler_8h_a272968d67e0c945010bc497ab5c8a997}{MAX\_PRIORITY\_PROCESS}};}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{keywordflow}{while} (\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/-\/ > \mbox{\hyperlink{Scheduler_8h_a3e6fdca565706f314397b394c3b5d8b5}{MIN\_PRIORITY\_PROCESS}}) \{}
+\DoxyCodeLine{181         \textcolor{keywordflow}{if} (\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} != \mbox{\hyperlink{Process_8h_ab97efa0d1c4aeaf55ff756bf16685854a8f383efff27b80ddb4ab5ffd6acfe51e}{READY\_STATE}}) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} process\_state  }
+\DoxyCodeLine{184         = \mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_af89fcf2abe8f35fd8543c8049a33654b}{worker}}(\mbox{\hyperlink{Scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a714f63ea56069df96e8268cbde6406ff}{parameter}});}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186         \textcolor{keywordflow}{if} (process\_state == \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97aeca4500f6f729608a014643f8c8f4003}{IDLE\_STATE}}) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188         \textcolor{keywordflow}{return} process\_state;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{return} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{192 \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{200 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{Scheduler_8h_aff54f8cf16cea2d049eb6107effb9c9e}{scheduler\_loop}}(\textcolor{keywordtype}{void}) \{   }
+\DoxyCodeLine{201     \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} signal = \mbox{\hyperlink{Scheduler_8h_ac0e9c8944486d1101de37eb0a3111114}{signal\_scheduler}}();}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{keywordflow}{if} (signal != \mbox{\hyperlink{Process_8h_aeccc645031be90ded0759d4192ce2a97aeca4500f6f729608a014643f8c8f4003}{IDLE\_STATE}}) \textcolor{keywordflow}{return} signal;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{keywordflow}{return} \mbox{\hyperlink{Scheduler_8h_a09c2bbee3d3d137684fec619c5e524c2}{standard\_scheduler}}();}
+\DoxyCodeLine{206 \}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

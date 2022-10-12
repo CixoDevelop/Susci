@@ -1,0 +1,76 @@
+\hypertarget{Latch_8h_source}{}\doxysection{Latch.\+h}
+\label{Latch_8h_source}\index{Susci/Synchronization/Latch.h@{Susci/Synchronization/Latch.h}}
+\mbox{\hyperlink{Latch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other}}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores data specific to the AVR ATtiny261 platform.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef SYNCHRONIZATION\_LATCH\_H\_INCLUDED}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define SYNCHRONIZATION\_LATCH\_H\_INCLUDED}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{22 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{23  }
+\DoxyCodeLine{24     \textcolor{comment}{/* Latch is empty, you can insert data to it */}}
+\DoxyCodeLine{25     \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93aa7a51864855a71fcbf553da33d217a07}{EMPTY\_FLAG}} = 0,}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{comment}{/* Latch is set, you can not insert data into it */}}
+\DoxyCodeLine{28     \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93a5618ccd4f2a9f47902936de1098bb24c}{SET\_FLAG}} = 1}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \} \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93}{latch\_flag\_t}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{36  }
+\DoxyCodeLine{37     \textcolor{comment}{/* Data in latch */}}
+\DoxyCodeLine{38     \textcolor{keywordtype}{char} \mbox{\hyperlink{structlatch__t_a397f1c39dba4968dc138461de9d4f371}{data}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{comment}{/* Latch flag */}}
+\DoxyCodeLine{41     \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93}{latch\_flag\_t}} \mbox{\hyperlink{structlatch__t_a585ef18d3a7c655331de90535ec13150}{flag}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \} \mbox{\hyperlink{structlatch__t}{latch\_t}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{structlatch__t}{latch\_t}} \mbox{\hyperlink{Latch_8h_ab92f0b12401b52dd993da5d5b35f3f12}{create\_latch}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{49     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structlatch__t}{latch\_t}}) \{0x00, \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93aa7a51864855a71fcbf553da33d217a07}{EMPTY\_FLAG}}\};}
+\DoxyCodeLine{50 \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{57 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{Latch_8h_acf1f9486553b8ae2ff8d9a992c14294a}{push\_latch}}(\mbox{\hyperlink{structlatch__t}{latch\_t}} *latch, \textcolor{keywordtype}{char} data) \{}
+\DoxyCodeLine{58     \textcolor{keywordflow}{if} (latch-\/>\mbox{\hyperlink{structlatch__t_a585ef18d3a7c655331de90535ec13150}{flag}} == \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93a5618ccd4f2a9f47902936de1098bb24c}{SET\_FLAG}}) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     latch-\/>\mbox{\hyperlink{structlatch__t_a585ef18d3a7c655331de90535ec13150}{flag}} = \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93a5618ccd4f2a9f47902936de1098bb24c}{SET\_FLAG}};}
+\DoxyCodeLine{61     latch-\/>\mbox{\hyperlink{structlatch__t_a397f1c39dba4968dc138461de9d4f371}{data}} = data;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{64 \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{comment}{/*}}
+\DoxyCodeLine{67 \textcolor{comment}{ * This function pop data from latch.}}
+\DoxyCodeLine{68 \textcolor{comment}{ * @*latch Latch object to operate on}}
+\DoxyCodeLine{69 \textcolor{comment}{ */}}
+\DoxyCodeLine{70 \textcolor{keyword}{static} \textcolor{keywordtype}{char} \mbox{\hyperlink{Latch_8h_a3b1640e5c6eea3c08382b5594ad354a1}{pop\_latch}}(\mbox{\hyperlink{structlatch__t}{latch\_t}} *latch) \{}
+\DoxyCodeLine{71     latch-\/>\mbox{\hyperlink{structlatch__t_a585ef18d3a7c655331de90535ec13150}{flag}} = \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93aa7a51864855a71fcbf553da33d217a07}{EMPTY\_FLAG}};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} latch-\/>\mbox{\hyperlink{structlatch__t_a397f1c39dba4968dc138461de9d4f371}{data}};}
+\DoxyCodeLine{74 \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{80 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{Latch_8h_a4645d494e6fbaa3789d7362fc731ba93}{latch\_flag\_t}} \mbox{\hyperlink{Latch_8h_ac3a79e947e5833e73f4647821409e3ce}{get\_latch\_busy\_flag}}(\mbox{\hyperlink{structlatch__t}{latch\_t}} *latch) \{}
+\DoxyCodeLine{81     \textcolor{keywordflow}{return} latch-\/>\mbox{\hyperlink{structlatch__t_a585ef18d3a7c655331de90535ec13150}{flag}};}
+\DoxyCodeLine{82 \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{88 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{char} \mbox{\hyperlink{Latch_8h_a115f3715da4f5ebda4d11aaece1115d5}{get\_latch\_data}}(\mbox{\hyperlink{structlatch__t}{latch\_t}} *latch) \{}
+\DoxyCodeLine{89     \textcolor{keywordflow}{return} latch-\/>\mbox{\hyperlink{structlatch__t_a397f1c39dba4968dc138461de9d4f371}{data}};}
+\DoxyCodeLine{90 \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

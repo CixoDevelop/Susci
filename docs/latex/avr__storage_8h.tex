@@ -1,0 +1,65 @@
+\hypertarget{avr__storage_8h}{}\doxysection{susci/drivers/integrated/avr\+\_\+storage.h File Reference}
+\label{avr__storage_8h}\index{susci/drivers/integrated/avr\_storage.h@{susci/drivers/integrated/avr\_storage.h}}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{avr__storage_8h_a356bbbf2d60bceefb8826666b74a235c}{storage\+\_\+write}} (\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}} address, char data)
+\item 
+static char \mbox{\hyperlink{avr__storage_8h_a05fab46edfee934d0cbea0d53dcd6d96}{storage\+\_\+read}} (\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}} address)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}\label{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}} 
+\index{avr\_storage.h@{avr\_storage.h}!address\_t@{address\_t}}
+\index{address\_t@{address\_t}!avr\_storage.h@{avr\_storage.h}}
+\doxysubsubsection{\texorpdfstring{address\_t}{address\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}}}
+
+Define address size. This id dependent on eeprom size, in small devices 1 byte, in bigger devices 2 bytes 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{avr__storage_8h_a05fab46edfee934d0cbea0d53dcd6d96}\label{avr__storage_8h_a05fab46edfee934d0cbea0d53dcd6d96}} 
+\index{avr\_storage.h@{avr\_storage.h}!storage\_read@{storage\_read}}
+\index{storage\_read@{storage\_read}!avr\_storage.h@{avr\_storage.h}}
+\doxysubsubsection{\texorpdfstring{storage\_read()}{storage\_read()}}
+{\footnotesize\ttfamily static char storage\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}}}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52                                             \{}
+\DoxyCodeLine{53     \textcolor{keywordflow}{while} (EECR \& (1 << EEPE)) ;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     EEAR = address;}
+\DoxyCodeLine{56     EECR |= (1 << EERE);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordflow}{return} EEDR;}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{avr__storage_8h_a356bbbf2d60bceefb8826666b74a235c}\label{avr__storage_8h_a356bbbf2d60bceefb8826666b74a235c}} 
+\index{avr\_storage.h@{avr\_storage.h}!storage\_write@{storage\_write}}
+\index{storage\_write@{storage\_write}!avr\_storage.h@{avr\_storage.h}}
+\doxysubsubsection{\texorpdfstring{storage\_write()}{storage\_write()}}
+{\footnotesize\ttfamily static void storage\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{avr__storage_8h_a2b7353d56cd722bf18fdc6fec5c51a17}{address\+\_\+t}}}]{address,  }\item[{char}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35                                                         \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{while} (EECR \& (1 << EEPE)) ;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     EECR = (0 << EEPM1) | (0 << EEPM0);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     EEAR = address;}
+\DoxyCodeLine{41     EEDR = data;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     EECR |= (1 << EEMPE);}
+\DoxyCodeLine{44     EECR |= (1 << EEPE);}
+\DoxyCodeLine{45 \}}
+
+\end{DoxyCode}

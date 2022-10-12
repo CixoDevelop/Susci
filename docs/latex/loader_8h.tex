@@ -1,0 +1,50 @@
+\hypertarget{loader_8h}{}\doxysection{susci/kernel/loader.h File Reference}
+\label{loader_8h}\index{susci/kernel/loader.h@{susci/kernel/loader.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{loader_8h_a2936d251ef9ab0127c5c566babb03595}{susci\+\_\+boot}} (void)
+\item 
+static void \mbox{\hyperlink{loader_8h_aa029ae871cd46f7f5a7e2be76da60d98}{susci\+\_\+panic}} (void)
+\item 
+int \mbox{\hyperlink{loader_8h_a568b3afc214ba30be5bf526d6b27b611}{main}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{loader_8h_a568b3afc214ba30be5bf526d6b27b611}\label{loader_8h_a568b3afc214ba30be5bf526d6b27b611}} 
+\index{loader.h@{loader.h}!main@{main}}
+\index{main@{main}!loader.h@{loader.h}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Overwriting the function with the main system bootloader. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{37                \{}
+\DoxyCodeLine{38     \textcolor{comment}{/* Init all modules */}}
+\DoxyCodeLine{39     \mbox{\hyperlink{platform_8h_a1f4227a7bd0a5e9386fabfe7d58a7183}{platform\_init}}();}
+\DoxyCodeLine{40     \mbox{\hyperlink{scheduler_8h_adaa8949819df9fcef28b31188811d65f}{scheduler\_init}}();}
+\DoxyCodeLine{41     \mbox{\hyperlink{loader_8h_a2936d251ef9ab0127c5c566babb03595}{susci\_boot}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{comment}{/* Run scheduler and timer */}}
+\DoxyCodeLine{44     \textcolor{keywordflow}{while} (\mbox{\hyperlink{scheduler_8h_aff54f8cf16cea2d049eb6107effb9c9e}{scheduler\_loop}}() == \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}}) \mbox{\hyperlink{time_8h_a87e04c079eb92c9c848eca8c8819dd0c}{check\_timer\_processes}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{comment}{/* Any process return PANIC\_STATE, handle error */}}
+\DoxyCodeLine{47     \mbox{\hyperlink{loader_8h_aa029ae871cd46f7f5a7e2be76da60d98}{susci\_panic}}();}
+\DoxyCodeLine{48     \textcolor{keywordflow}{while} (\textcolor{keyword}{true});}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{loader_8h_a2936d251ef9ab0127c5c566babb03595}\label{loader_8h_a2936d251ef9ab0127c5c566babb03595}} 
+\index{loader.h@{loader.h}!susci\_boot@{susci\_boot}}
+\index{susci\_boot@{susci\_boot}!loader.h@{loader.h}}
+\doxysubsubsection{\texorpdfstring{susci\_boot()}{susci\_boot()}}
+{\footnotesize\ttfamily susci\+\_\+boot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function is called when the system is ready to create processes and the platform is properly initialized. So write your own project initiation here. \mbox{\Hypertarget{loader_8h_aa029ae871cd46f7f5a7e2be76da60d98}\label{loader_8h_aa029ae871cd46f7f5a7e2be76da60d98}} 
+\index{loader.h@{loader.h}!susci\_panic@{susci\_panic}}
+\index{susci\_panic@{susci\_panic}!loader.h@{loader.h}}
+\doxysubsubsection{\texorpdfstring{susci\_panic()}{susci\_panic()}}
+{\footnotesize\ttfamily susci\+\_\+panic (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function is run just before the processor freezes at the time of the system failure, or if any of the processes returns a fatal error. 

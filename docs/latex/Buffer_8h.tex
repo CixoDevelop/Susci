@@ -1,0 +1,140 @@
+\hypertarget{Buffer_8h}{}\doxysection{Susci/\+Synchronization/\+Buffer.h File Reference}
+\label{Buffer_8h}\index{Susci/Synchronization/Buffer.h@{Susci/Synchronization/Buffer.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Buffer_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~8
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} \mbox{\hyperlink{Buffer_8h_ab84e064420b44e5aa85f3ad5fc2608e8}{create\+\_\+buffer}} ()
+\item 
+static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{Buffer_8h_a2a8e655afd197aceb2c1017b755a3e83}{is\+\_\+buffer\+\_\+readable}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer)
+\item 
+static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{Buffer_8h_a3ebc0478f213715ebd5dba497674355e}{is\+\_\+buffer\+\_\+writable}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer)
+\item 
+static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{Buffer_8h_aee70db2dac9299174cfa056ddac9e8c6}{all\+\_\+data\+\_\+read\+\_\+from\+\_\+buffer}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer)
+\item 
+static void \mbox{\hyperlink{Buffer_8h_a4cc83ed13e3473991e7fbb43e669d41d}{reset\+\_\+buffer}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer)
+\item 
+static char \mbox{\hyperlink{Buffer_8h_afc14c9a996b991af4d4a272409bfa197}{read\+\_\+buffer}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer)
+\item 
+static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{Buffer_8h_addeec2ccb4af48ce9fb96f17ebf2dd6e}{write\+\_\+buffer}} (\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$buffer, char data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{Buffer_8h_a6b20d41d6252e9871430c242cb1a56e7}\label{Buffer_8h_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{Buffer.h@{Buffer.h}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~8}
+
+Set default buffer size 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Buffer_8h_aee70db2dac9299174cfa056ddac9e8c6}\label{Buffer_8h_aee70db2dac9299174cfa056ddac9e8c6}} 
+\index{Buffer.h@{Buffer.h}!all\_data\_read\_from\_buffer@{all\_data\_read\_from\_buffer}}
+\index{all\_data\_read\_from\_buffer@{all\_data\_read\_from\_buffer}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{all\_data\_read\_from\_buffer()}{all\_data\_read\_from\_buffer()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} all\+\_\+data\+\_\+read\+\_\+from\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{69                                                                \{}
+\DoxyCodeLine{70     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{bool}) (buffer-\/>\mbox{\hyperlink{structbuffer__t_a537a59dd6d981bcecaf63d5aa807373a}{read\_position}} == buffer-\/>\mbox{\hyperlink{structbuffer__t_af11157f06051b7ae5ad14a183a60263d}{write\_position}});}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_ab84e064420b44e5aa85f3ad5fc2608e8}\label{Buffer_8h_ab84e064420b44e5aa85f3ad5fc2608e8}} 
+\index{Buffer.h@{Buffer.h}!create\_buffer@{create\_buffer}}
+\index{create\_buffer@{create\_buffer}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{create\_buffer()}{create\_buffer()}}
+{\footnotesize\ttfamily create\+\_\+buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function creating empty buffer and returning it. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46                                        \{}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structbuffer__t}{buffer\_t}}) \{0x00, 0x00, \{0x00\}\};}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_a2a8e655afd197aceb2c1017b755a3e83}\label{Buffer_8h_a2a8e655afd197aceb2c1017b755a3e83}} 
+\index{Buffer.h@{Buffer.h}!is\_buffer\_readable@{is\_buffer\_readable}}
+\index{is\_buffer\_readable@{is\_buffer\_readable}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{is\_buffer\_readable()}{is\_buffer\_readable()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} is\+\_\+buffer\+\_\+readable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{54                                                         \{}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{bool}) (buffer-\/>\mbox{\hyperlink{structbuffer__t_a537a59dd6d981bcecaf63d5aa807373a}{read\_position}} < buffer-\/>\mbox{\hyperlink{structbuffer__t_af11157f06051b7ae5ad14a183a60263d}{write\_position}});}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_a3ebc0478f213715ebd5dba497674355e}\label{Buffer_8h_a3ebc0478f213715ebd5dba497674355e}} 
+\index{Buffer.h@{Buffer.h}!is\_buffer\_writable@{is\_buffer\_writable}}
+\index{is\_buffer\_writable@{is\_buffer\_writable}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{is\_buffer\_writable()}{is\_buffer\_writable()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} is\+\_\+buffer\+\_\+writable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62                                                         \{}
+\DoxyCodeLine{63     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{bool}) (buffer-\/>\mbox{\hyperlink{structbuffer__t_af11157f06051b7ae5ad14a183a60263d}{write\_position}} <= \mbox{\hyperlink{Buffer_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\_SIZE}});}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_afc14c9a996b991af4d4a272409bfa197}\label{Buffer_8h_afc14c9a996b991af4d4a272409bfa197}} 
+\index{Buffer.h@{Buffer.h}!read\_buffer@{read\_buffer}}
+\index{read\_buffer@{read\_buffer}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{read\_buffer()}{read\_buffer()}}
+{\footnotesize\ttfamily static char read\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{84                                           \{}
+\DoxyCodeLine{85     \textcolor{keywordtype}{char} data = buffer-\/>\mbox{\hyperlink{structbuffer__t_ac082a90712df17f28451ecba315a99e6}{buffer}}[buffer-\/>\mbox{\hyperlink{structbuffer__t_a537a59dd6d981bcecaf63d5aa807373a}{read\_position}} ++];}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordflow}{if} (\mbox{\hyperlink{Buffer_8h_aee70db2dac9299174cfa056ddac9e8c6}{all\_data\_read\_from\_buffer}}(buffer)) \mbox{\hyperlink{Buffer_8h_a4cc83ed13e3473991e7fbb43e669d41d}{reset\_buffer}}(buffer);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{90 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_a4cc83ed13e3473991e7fbb43e669d41d}\label{Buffer_8h_a4cc83ed13e3473991e7fbb43e669d41d}} 
+\index{Buffer.h@{Buffer.h}!reset\_buffer@{reset\_buffer}}
+\index{reset\_buffer@{reset\_buffer}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{reset\_buffer()}{reset\_buffer()}}
+{\footnotesize\ttfamily static void reset\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                   \{}
+\DoxyCodeLine{77     buffer-\/>\mbox{\hyperlink{structbuffer__t_a537a59dd6d981bcecaf63d5aa807373a}{read\_position}} = buffer-\/>\mbox{\hyperlink{structbuffer__t_af11157f06051b7ae5ad14a183a60263d}{write\_position}} = 0x00;}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Buffer_8h_addeec2ccb4af48ce9fb96f17ebf2dd6e}\label{Buffer_8h_addeec2ccb4af48ce9fb96f17ebf2dd6e}} 
+\index{Buffer.h@{Buffer.h}!write\_buffer@{write\_buffer}}
+\index{write\_buffer@{write\_buffer}!Buffer.h@{Buffer.h}}
+\doxysubsubsection{\texorpdfstring{write\_buffer()}{write\_buffer()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} write\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuffer__t}{buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{char}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97                                                       \{}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{Buffer_8h_a3ebc0478f213715ebd5dba497674355e}{is\_buffer\_writable}}(buffer)) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{99     }
+\DoxyCodeLine{100     buffer-\/>\mbox{\hyperlink{structbuffer__t_ac082a90712df17f28451ecba315a99e6}{buffer}}[buffer-\/>\mbox{\hyperlink{structbuffer__t_af11157f06051b7ae5ad14a183a60263d}{write\_position}} ++] = data;}
+\DoxyCodeLine{101     }
+\DoxyCodeLine{102     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{103 \}}
+
+\end{DoxyCode}

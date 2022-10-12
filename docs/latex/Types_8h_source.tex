@@ -1,0 +1,51 @@
+\hypertarget{Types_8h_source}{}\doxysection{Types.\+h}
+\label{Types_8h_source}\index{Susci/Kernel/Types.h@{Susci/Kernel/Types.h}}
+\mbox{\hyperlink{Types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other }}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores declarations of the base types used on the system, which}}
+\DoxyCodeLine{14 \textcolor{comment}{ * makes it independent of the base libraries of the different platforms.}}
+\DoxyCodeLine{15 \textcolor{comment}{ */}}
+\DoxyCodeLine{16  }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef KERNEL\_TYPES\_H\_INCLUDED}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define KERNEL\_TYPES\_H\_INCLUDED}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef uint8\_t}}
+\DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} uint8\_t \mbox{\hyperlink{Types_8h_a68d561065aca692a21354c4d94ea5534}{\_\_attribute\_\_}}((\_\_mode\_\_(\_\_QI\_\_)));}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef uint16\_t}}
+\DoxyCodeLine{33 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} uint16\_t \mbox{\hyperlink{Types_8h_a68d561065aca692a21354c4d94ea5534}{\_\_attribute\_\_}}((\_\_mode\_\_(\_\_HI\_\_)));}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifndef bool}}
+\DoxyCodeLine{40 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{41     \textcolor{keyword}{true} = 1,}
+\DoxyCodeLine{42     \textcolor{keyword}{false} = 0}
+\DoxyCodeLine{43 \} \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}};}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifndef nullptr}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define nullptr 0x00}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{56 \textcolor{keyword}{typedef} uint8\_t \mbox{\hyperlink{Types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{61 \textcolor{keyword}{typedef} uint8\_t \mbox{\hyperlink{Types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

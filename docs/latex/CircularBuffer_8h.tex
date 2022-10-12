@@ -1,0 +1,77 @@
+\hypertarget{CircularBuffer_8h}{}\doxysection{Susci/\+Synchronization/\+Circular\+Buffer.h File Reference}
+\label{CircularBuffer_8h}\index{Susci/Synchronization/CircularBuffer.h@{Susci/Synchronization/CircularBuffer.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{CircularBuffer_8h_a501f5c21d6fe4e60dc984cdaba5e892f}{CIRCULAR\+\_\+\+BUFFER\+\_\+\+SIZE}}~8
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}} \mbox{\hyperlink{CircularBuffer_8h_a8809e0426b81f19845f1a47804f7cc6c}{create\+\_\+circular\+\_\+buffer}} (void)
+\item 
+static void \mbox{\hyperlink{CircularBuffer_8h_a343aac0081ff791e4d40a90a321fc77d}{write\+\_\+circular\+\_\+buffer}} (\mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}} $\ast$buffer, char data)
+\item 
+static char \mbox{\hyperlink{CircularBuffer_8h_a6f5240ac5ccffc433e75cc4e5f66aba7}{read\+\_\+circular\+\_\+buffer}} (\mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}} $\ast$buffer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{CircularBuffer_8h_a501f5c21d6fe4e60dc984cdaba5e892f}\label{CircularBuffer_8h_a501f5c21d6fe4e60dc984cdaba5e892f}} 
+\index{CircularBuffer.h@{CircularBuffer.h}!CIRCULAR\_BUFFER\_SIZE@{CIRCULAR\_BUFFER\_SIZE}}
+\index{CIRCULAR\_BUFFER\_SIZE@{CIRCULAR\_BUFFER\_SIZE}!CircularBuffer.h@{CircularBuffer.h}}
+\doxysubsubsection{\texorpdfstring{CIRCULAR\_BUFFER\_SIZE}{CIRCULAR\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define CIRCULAR\+\_\+\+BUFFER\+\_\+\+SIZE~8}
+
+Set default circular buffer size. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{CircularBuffer_8h_a8809e0426b81f19845f1a47804f7cc6c}\label{CircularBuffer_8h_a8809e0426b81f19845f1a47804f7cc6c}} 
+\index{CircularBuffer.h@{CircularBuffer.h}!create\_circular\_buffer@{create\_circular\_buffer}}
+\index{create\_circular\_buffer@{create\_circular\_buffer}!CircularBuffer.h@{CircularBuffer.h}}
+\doxysubsubsection{\texorpdfstring{create\_circular\_buffer()}{create\_circular\_buffer()}}
+{\footnotesize\ttfamily create\+\_\+circular\+\_\+buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function creating empty circular buffer and returning it. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46                                                              \{}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structcircular__buffer__t}{circular\_buffer\_t}}) \{0x00, 0x00, \{0x00\}\};}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{CircularBuffer_8h_a6f5240ac5ccffc433e75cc4e5f66aba7}\label{CircularBuffer_8h_a6f5240ac5ccffc433e75cc4e5f66aba7}} 
+\index{CircularBuffer.h@{CircularBuffer.h}!read\_circular\_buffer@{read\_circular\_buffer}}
+\index{read\_circular\_buffer@{read\_circular\_buffer}!CircularBuffer.h@{CircularBuffer.h}}
+\doxysubsubsection{\texorpdfstring{read\_circular\_buffer()}{read\_circular\_buffer()}}
+{\footnotesize\ttfamily static char read\+\_\+circular\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64                                                             \{}
+\DoxyCodeLine{65     \textcolor{keywordtype}{char} data = buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_ac6ec1778d6ebc51e3dd9ca2b8affa6c4}{buffer}}[buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_ad1a843cfb57f828974f4c67f4986df25}{read\_position}}++];}
+\DoxyCodeLine{66     }
+\DoxyCodeLine{67     buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_ad1a843cfb57f828974f4c67f4986df25}{read\_position}} \%= \mbox{\hyperlink{CircularBuffer_8h_a501f5c21d6fe4e60dc984cdaba5e892f}{CIRCULAR\_BUFFER\_SIZE}};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{CircularBuffer_8h_a343aac0081ff791e4d40a90a321fc77d}\label{CircularBuffer_8h_a343aac0081ff791e4d40a90a321fc77d}} 
+\index{CircularBuffer.h@{CircularBuffer.h}!write\_circular\_buffer@{write\_circular\_buffer}}
+\index{write\_circular\_buffer@{write\_circular\_buffer}!CircularBuffer.h@{CircularBuffer.h}}
+\doxysubsubsection{\texorpdfstring{write\_circular\_buffer()}{write\_circular\_buffer()}}
+{\footnotesize\ttfamily static void write\+\_\+circular\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcircular__buffer__t}{circular\+\_\+buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{char}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55                                                                         \{}
+\DoxyCodeLine{56     buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_ac6ec1778d6ebc51e3dd9ca2b8affa6c4}{buffer}}[buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_a50064939ad9262ec67b07c60dcd2f294}{write\_position}}++] = data;}
+\DoxyCodeLine{57     buffer-\/>\mbox{\hyperlink{structcircular__buffer__t_a50064939ad9262ec67b07c60dcd2f294}{write\_position}} \%= \mbox{\hyperlink{CircularBuffer_8h_a501f5c21d6fe4e60dc984cdaba5e892f}{CIRCULAR\_BUFFER\_SIZE}};}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}

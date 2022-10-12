@@ -1,0 +1,418 @@
+\hypertarget{ATtiny261_8h}{}\doxysection{Susci/\+Platforms/\+ATtiny261.h File Reference}
+\label{ATtiny261_8h}\index{Susci/Platforms/ATtiny261.h@{Susci/Platforms/ATtiny261.h}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../\+Kernel/\+Platform.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+Integrated/\+Avr\+Pins.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+Integrated/\+Avr\+Storage.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}{MAX\+\_\+\+SYSTEM\+\_\+\+TIME}}~65535
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_aa9feb9ed4d365dc62ead4e0e0127a636}{TICK\+\_\+\+TIME}}(X)~(System\+Tick)(X $\ast$ (F\+\_\+\+CPU / 1000) / 1024)
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a83e996eaa5c5a51d7c9a077f5b59538f}{LOW\+\_\+\+DDR}}~\&DDRB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ab080d69b67da115e2bb07f54243ce7b5}{LOW\+\_\+\+PIN}}~\&PINB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ae220315a1b7fb3c1cb346a193e620f2f}{LOW\+\_\+\+PORT}}~\&PORTB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_afb1b4dfb9954b3d22ab27aa822938f29}{LOW\+\_\+\+PCMSK}}~\&PCMSK1
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a61a1b7885b5f44435c82fb29749fded1}{PIN\+\_\+1}}~0
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a6d66f3c31b8d0d21e539ba4b381ad5c7}{PIN\+\_\+2}}~1
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a884c9578ffc28c044539d3c0176207e4}{PIN\+\_\+3}}~2
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a8088a3b9bfae1f46b55824cb7ba21b7a}{PIN\+\_\+4}}~3
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a1d222f0684a8413a38c257d9938af585}{PIN\+\_\+5}}~ERROR\+\_\+\+VCC
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a347ca13449e59d7377624b64bc42d464}{PIN\+\_\+6}}~ERROR\+\_\+\+GND
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_af56aad34f1635c1a7866a06b52f92d8f}{PIN\+\_\+7}}~4
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a0f6f10937b433da4954b381d635f86c5}{PIN\+\_\+8}}~5
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a590e3acf2838bb10adc23423b1a2d99f}{PIN\+\_\+9}}~6
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ab0325877bd0a5d050a66803b6bd0e468}{PIN\+\_\+10}}~7
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a0b2f64dccbacd10c5e5beafeed5ac1fa}{PIN\+\_\+11}}~15
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a6e3c0065286615f016c8bddeccf5cc58}{PIN\+\_\+12}}~14
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ac0fccfb7aabbc0dacba0778ba39520f2}{PIN\+\_\+13}}~13
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a6839ca586b06e5b307d3e0d3429c0a4b}{PIN\+\_\+14}}~12
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_afded4a1a960c0db971a1a56e4c9a2926}{PIN\+\_\+15}}~ERROR\+\_\+\+AVCC
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ac879accfce8b9e0962168b3e0fd6e92f}{PIN\+\_\+16}}~ERROR\+\_\+\+GND
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a8ca14a1d6f509fa8ac3a85a91a3573c1}{PIN\+\_\+17}}~11
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a252947c8abccaf44e2d759265c88c6a8}{PIN\+\_\+18}}~10
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ad10ffd5c19801a5254964d9c61cc4690}{PIN\+\_\+19}}~9
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_aba94f75cd68be74e6a2a0e48b7438cb0}{PIN\+\_\+20}}~8
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_af5c993f9d3196409166e7be8ef25fdb4}{BYTE\+\_\+\+EEPROM\+\_\+\+ADDRESS}}
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a5bc681228b3a965e8ce099ec77045448}{USI\+\_\+\+DATA}}~USIDR
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a3640e86d214909cd81a4b217a1693565}{USI\+\_\+\+CONTROL}}~USICR
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a48f257631061b375375c401b07ea13da}{USI\+\_\+\+STATUS}}~USISR
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a526d580d324bce60a3e964066fae77e3}{SDA\+\_\+\+PIN}}~PINB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ac47af8b0e510ef86f6b69e120ac7f9de}{SDA\+\_\+\+PORT}}~PORTB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a16bb6708250d17ee2118d29e4865a653}{SDA\+\_\+\+DDR}}~DDRB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ad392821b5c48626e5363ad708caeb57d}{SDA\+\_\+\+MASK}}~\+\_\+\+BV (0)
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a06c967e78bcedcee909a70764f879433}{SCL\+\_\+\+PIN}}~PINB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_ac290a46b6e8e07654c81d01d5e5f288b}{SCL\+\_\+\+PORT}}~PORTB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a5020a160f5b8f0a1697cfadbe778424b}{SCL\+\_\+\+DDR}}~DDRB
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a59d33149e2f302217ebfde0456e27e9f}{SCL\+\_\+\+MASK}}~\+\_\+\+BV (2)
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a4726446a51fd0ec00589e3f7a3ac2db6}{USI\+\_\+\+START\+\_\+\+INTERRUPT}}~USI\+\_\+\+START\+\_\+vect
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_a7e4537ab654b247f4faabc7b38f056ab}{USI\+\_\+\+OVERFLOW\+\_\+\+INTERRUPT}}~USI\+\_\+\+OVF\+\_\+vect
+\item 
+\#define \mbox{\hyperlink{ATtiny261_8h_acf7e0d539d44d095c89c144ad22ebd19}{USE\+\_\+\+TWI\+\_\+\+SLAVE\+\_\+\+TINY\+\_\+\+IMPLEMENTATION}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\+\_\+tick\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{ATtiny261_8h_a1f4227a7bd0a5e9386fabfe7d58a7183}{platform\+\_\+init}} (void)
+\item 
+static \mbox{\hyperlink{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\+\_\+tick\+\_\+t}} \mbox{\hyperlink{ATtiny261_8h_a2573781dcdeb21b82f54574ae060be82}{get\+\_\+time}} (void)
+\item 
+\mbox{\hyperlink{ATtiny261_8h_a04d3f94da90f7ac1b018f80f321e86de}{ISR}} (BADISR\+\_\+vect)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ATtiny261_8h_af5c993f9d3196409166e7be8ef25fdb4}\label{ATtiny261_8h_af5c993f9d3196409166e7be8ef25fdb4}} 
+\index{ATtiny261.h@{ATtiny261.h}!BYTE\_EEPROM\_ADDRESS@{BYTE\_EEPROM\_ADDRESS}}
+\index{BYTE\_EEPROM\_ADDRESS@{BYTE\_EEPROM\_ADDRESS}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{BYTE\_EEPROM\_ADDRESS}{BYTE\_EEPROM\_ADDRESS}}
+{\footnotesize\ttfamily \#define BYTE\+\_\+\+EEPROM\+\_\+\+ADDRESS}
+
+\mbox{\Hypertarget{ATtiny261_8h_a83e996eaa5c5a51d7c9a077f5b59538f}\label{ATtiny261_8h_a83e996eaa5c5a51d7c9a077f5b59538f}} 
+\index{ATtiny261.h@{ATtiny261.h}!LOW\_DDR@{LOW\_DDR}}
+\index{LOW\_DDR@{LOW\_DDR}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{LOW\_DDR}{LOW\_DDR}}
+{\footnotesize\ttfamily \#define LOW\+\_\+\+DDR~\&DDRB}
+
+\mbox{\Hypertarget{ATtiny261_8h_afb1b4dfb9954b3d22ab27aa822938f29}\label{ATtiny261_8h_afb1b4dfb9954b3d22ab27aa822938f29}} 
+\index{ATtiny261.h@{ATtiny261.h}!LOW\_PCMSK@{LOW\_PCMSK}}
+\index{LOW\_PCMSK@{LOW\_PCMSK}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{LOW\_PCMSK}{LOW\_PCMSK}}
+{\footnotesize\ttfamily \#define LOW\+\_\+\+PCMSK~\&PCMSK1}
+
+\mbox{\Hypertarget{ATtiny261_8h_ab080d69b67da115e2bb07f54243ce7b5}\label{ATtiny261_8h_ab080d69b67da115e2bb07f54243ce7b5}} 
+\index{ATtiny261.h@{ATtiny261.h}!LOW\_PIN@{LOW\_PIN}}
+\index{LOW\_PIN@{LOW\_PIN}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{LOW\_PIN}{LOW\_PIN}}
+{\footnotesize\ttfamily \#define LOW\+\_\+\+PIN~\&PINB}
+
+\mbox{\Hypertarget{ATtiny261_8h_ae220315a1b7fb3c1cb346a193e620f2f}\label{ATtiny261_8h_ae220315a1b7fb3c1cb346a193e620f2f}} 
+\index{ATtiny261.h@{ATtiny261.h}!LOW\_PORT@{LOW\_PORT}}
+\index{LOW\_PORT@{LOW\_PORT}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{LOW\_PORT}{LOW\_PORT}}
+{\footnotesize\ttfamily \#define LOW\+\_\+\+PORT~\&PORTB}
+
+\mbox{\Hypertarget{ATtiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}\label{ATtiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}} 
+\index{ATtiny261.h@{ATtiny261.h}!MAX\_SYSTEM\_TIME@{MAX\_SYSTEM\_TIME}}
+\index{MAX\_SYSTEM\_TIME@{MAX\_SYSTEM\_TIME}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_SYSTEM\_TIME}{MAX\_SYSTEM\_TIME}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SYSTEM\+\_\+\+TIME~65535}
+
+\mbox{\Hypertarget{ATtiny261_8h_a61a1b7885b5f44435c82fb29749fded1}\label{ATtiny261_8h_a61a1b7885b5f44435c82fb29749fded1}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_1@{PIN\_1}}
+\index{PIN\_1@{PIN\_1}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_1}{PIN\_1}}
+{\footnotesize\ttfamily \#define PIN\+\_\+1~0}
+
+\mbox{\Hypertarget{ATtiny261_8h_ab0325877bd0a5d050a66803b6bd0e468}\label{ATtiny261_8h_ab0325877bd0a5d050a66803b6bd0e468}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_10@{PIN\_10}}
+\index{PIN\_10@{PIN\_10}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_10}{PIN\_10}}
+{\footnotesize\ttfamily \#define PIN\+\_\+10~7}
+
+\mbox{\Hypertarget{ATtiny261_8h_a0b2f64dccbacd10c5e5beafeed5ac1fa}\label{ATtiny261_8h_a0b2f64dccbacd10c5e5beafeed5ac1fa}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_11@{PIN\_11}}
+\index{PIN\_11@{PIN\_11}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_11}{PIN\_11}}
+{\footnotesize\ttfamily \#define PIN\+\_\+11~15}
+
+\mbox{\Hypertarget{ATtiny261_8h_a6e3c0065286615f016c8bddeccf5cc58}\label{ATtiny261_8h_a6e3c0065286615f016c8bddeccf5cc58}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_12@{PIN\_12}}
+\index{PIN\_12@{PIN\_12}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_12}{PIN\_12}}
+{\footnotesize\ttfamily \#define PIN\+\_\+12~14}
+
+\mbox{\Hypertarget{ATtiny261_8h_ac0fccfb7aabbc0dacba0778ba39520f2}\label{ATtiny261_8h_ac0fccfb7aabbc0dacba0778ba39520f2}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_13@{PIN\_13}}
+\index{PIN\_13@{PIN\_13}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_13}{PIN\_13}}
+{\footnotesize\ttfamily \#define PIN\+\_\+13~13}
+
+\mbox{\Hypertarget{ATtiny261_8h_a6839ca586b06e5b307d3e0d3429c0a4b}\label{ATtiny261_8h_a6839ca586b06e5b307d3e0d3429c0a4b}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_14@{PIN\_14}}
+\index{PIN\_14@{PIN\_14}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_14}{PIN\_14}}
+{\footnotesize\ttfamily \#define PIN\+\_\+14~12}
+
+\mbox{\Hypertarget{ATtiny261_8h_afded4a1a960c0db971a1a56e4c9a2926}\label{ATtiny261_8h_afded4a1a960c0db971a1a56e4c9a2926}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_15@{PIN\_15}}
+\index{PIN\_15@{PIN\_15}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_15}{PIN\_15}}
+{\footnotesize\ttfamily \#define PIN\+\_\+15~ERROR\+\_\+\+AVCC}
+
+\mbox{\Hypertarget{ATtiny261_8h_ac879accfce8b9e0962168b3e0fd6e92f}\label{ATtiny261_8h_ac879accfce8b9e0962168b3e0fd6e92f}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_16@{PIN\_16}}
+\index{PIN\_16@{PIN\_16}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_16}{PIN\_16}}
+{\footnotesize\ttfamily \#define PIN\+\_\+16~ERROR\+\_\+\+GND}
+
+\mbox{\Hypertarget{ATtiny261_8h_a8ca14a1d6f509fa8ac3a85a91a3573c1}\label{ATtiny261_8h_a8ca14a1d6f509fa8ac3a85a91a3573c1}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_17@{PIN\_17}}
+\index{PIN\_17@{PIN\_17}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_17}{PIN\_17}}
+{\footnotesize\ttfamily \#define PIN\+\_\+17~11}
+
+\mbox{\Hypertarget{ATtiny261_8h_a252947c8abccaf44e2d759265c88c6a8}\label{ATtiny261_8h_a252947c8abccaf44e2d759265c88c6a8}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_18@{PIN\_18}}
+\index{PIN\_18@{PIN\_18}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_18}{PIN\_18}}
+{\footnotesize\ttfamily \#define PIN\+\_\+18~10}
+
+\mbox{\Hypertarget{ATtiny261_8h_ad10ffd5c19801a5254964d9c61cc4690}\label{ATtiny261_8h_ad10ffd5c19801a5254964d9c61cc4690}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_19@{PIN\_19}}
+\index{PIN\_19@{PIN\_19}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_19}{PIN\_19}}
+{\footnotesize\ttfamily \#define PIN\+\_\+19~9}
+
+\mbox{\Hypertarget{ATtiny261_8h_a6d66f3c31b8d0d21e539ba4b381ad5c7}\label{ATtiny261_8h_a6d66f3c31b8d0d21e539ba4b381ad5c7}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_2@{PIN\_2}}
+\index{PIN\_2@{PIN\_2}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_2}{PIN\_2}}
+{\footnotesize\ttfamily \#define PIN\+\_\+2~1}
+
+\mbox{\Hypertarget{ATtiny261_8h_aba94f75cd68be74e6a2a0e48b7438cb0}\label{ATtiny261_8h_aba94f75cd68be74e6a2a0e48b7438cb0}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_20@{PIN\_20}}
+\index{PIN\_20@{PIN\_20}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_20}{PIN\_20}}
+{\footnotesize\ttfamily \#define PIN\+\_\+20~8}
+
+\mbox{\Hypertarget{ATtiny261_8h_a884c9578ffc28c044539d3c0176207e4}\label{ATtiny261_8h_a884c9578ffc28c044539d3c0176207e4}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_3@{PIN\_3}}
+\index{PIN\_3@{PIN\_3}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_3}{PIN\_3}}
+{\footnotesize\ttfamily \#define PIN\+\_\+3~2}
+
+\mbox{\Hypertarget{ATtiny261_8h_a8088a3b9bfae1f46b55824cb7ba21b7a}\label{ATtiny261_8h_a8088a3b9bfae1f46b55824cb7ba21b7a}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_4@{PIN\_4}}
+\index{PIN\_4@{PIN\_4}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_4}{PIN\_4}}
+{\footnotesize\ttfamily \#define PIN\+\_\+4~3}
+
+\mbox{\Hypertarget{ATtiny261_8h_a1d222f0684a8413a38c257d9938af585}\label{ATtiny261_8h_a1d222f0684a8413a38c257d9938af585}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_5@{PIN\_5}}
+\index{PIN\_5@{PIN\_5}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_5}{PIN\_5}}
+{\footnotesize\ttfamily \#define PIN\+\_\+5~ERROR\+\_\+\+VCC}
+
+\mbox{\Hypertarget{ATtiny261_8h_a347ca13449e59d7377624b64bc42d464}\label{ATtiny261_8h_a347ca13449e59d7377624b64bc42d464}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_6@{PIN\_6}}
+\index{PIN\_6@{PIN\_6}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_6}{PIN\_6}}
+{\footnotesize\ttfamily \#define PIN\+\_\+6~ERROR\+\_\+\+GND}
+
+\mbox{\Hypertarget{ATtiny261_8h_af56aad34f1635c1a7866a06b52f92d8f}\label{ATtiny261_8h_af56aad34f1635c1a7866a06b52f92d8f}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_7@{PIN\_7}}
+\index{PIN\_7@{PIN\_7}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_7}{PIN\_7}}
+{\footnotesize\ttfamily \#define PIN\+\_\+7~4}
+
+\mbox{\Hypertarget{ATtiny261_8h_a0f6f10937b433da4954b381d635f86c5}\label{ATtiny261_8h_a0f6f10937b433da4954b381d635f86c5}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_8@{PIN\_8}}
+\index{PIN\_8@{PIN\_8}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_8}{PIN\_8}}
+{\footnotesize\ttfamily \#define PIN\+\_\+8~5}
+
+\mbox{\Hypertarget{ATtiny261_8h_a590e3acf2838bb10adc23423b1a2d99f}\label{ATtiny261_8h_a590e3acf2838bb10adc23423b1a2d99f}} 
+\index{ATtiny261.h@{ATtiny261.h}!PIN\_9@{PIN\_9}}
+\index{PIN\_9@{PIN\_9}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_9}{PIN\_9}}
+{\footnotesize\ttfamily \#define PIN\+\_\+9~6}
+
+\mbox{\Hypertarget{ATtiny261_8h_a5020a160f5b8f0a1697cfadbe778424b}\label{ATtiny261_8h_a5020a160f5b8f0a1697cfadbe778424b}} 
+\index{ATtiny261.h@{ATtiny261.h}!SCL\_DDR@{SCL\_DDR}}
+\index{SCL\_DDR@{SCL\_DDR}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SCL\_DDR}{SCL\_DDR}}
+{\footnotesize\ttfamily \#define SCL\+\_\+\+DDR~DDRB}
+
+\mbox{\Hypertarget{ATtiny261_8h_a59d33149e2f302217ebfde0456e27e9f}\label{ATtiny261_8h_a59d33149e2f302217ebfde0456e27e9f}} 
+\index{ATtiny261.h@{ATtiny261.h}!SCL\_MASK@{SCL\_MASK}}
+\index{SCL\_MASK@{SCL\_MASK}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SCL\_MASK}{SCL\_MASK}}
+{\footnotesize\ttfamily \#define SCL\+\_\+\+MASK~\+\_\+\+BV (2)}
+
+\mbox{\Hypertarget{ATtiny261_8h_a06c967e78bcedcee909a70764f879433}\label{ATtiny261_8h_a06c967e78bcedcee909a70764f879433}} 
+\index{ATtiny261.h@{ATtiny261.h}!SCL\_PIN@{SCL\_PIN}}
+\index{SCL\_PIN@{SCL\_PIN}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SCL\_PIN}{SCL\_PIN}}
+{\footnotesize\ttfamily \#define SCL\+\_\+\+PIN~PINB}
+
+\mbox{\Hypertarget{ATtiny261_8h_ac290a46b6e8e07654c81d01d5e5f288b}\label{ATtiny261_8h_ac290a46b6e8e07654c81d01d5e5f288b}} 
+\index{ATtiny261.h@{ATtiny261.h}!SCL\_PORT@{SCL\_PORT}}
+\index{SCL\_PORT@{SCL\_PORT}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SCL\_PORT}{SCL\_PORT}}
+{\footnotesize\ttfamily \#define SCL\+\_\+\+PORT~PORTB}
+
+\mbox{\Hypertarget{ATtiny261_8h_a16bb6708250d17ee2118d29e4865a653}\label{ATtiny261_8h_a16bb6708250d17ee2118d29e4865a653}} 
+\index{ATtiny261.h@{ATtiny261.h}!SDA\_DDR@{SDA\_DDR}}
+\index{SDA\_DDR@{SDA\_DDR}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SDA\_DDR}{SDA\_DDR}}
+{\footnotesize\ttfamily \#define SDA\+\_\+\+DDR~DDRB}
+
+\mbox{\Hypertarget{ATtiny261_8h_ad392821b5c48626e5363ad708caeb57d}\label{ATtiny261_8h_ad392821b5c48626e5363ad708caeb57d}} 
+\index{ATtiny261.h@{ATtiny261.h}!SDA\_MASK@{SDA\_MASK}}
+\index{SDA\_MASK@{SDA\_MASK}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SDA\_MASK}{SDA\_MASK}}
+{\footnotesize\ttfamily \#define SDA\+\_\+\+MASK~\+\_\+\+BV (0)}
+
+\mbox{\Hypertarget{ATtiny261_8h_a526d580d324bce60a3e964066fae77e3}\label{ATtiny261_8h_a526d580d324bce60a3e964066fae77e3}} 
+\index{ATtiny261.h@{ATtiny261.h}!SDA\_PIN@{SDA\_PIN}}
+\index{SDA\_PIN@{SDA\_PIN}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SDA\_PIN}{SDA\_PIN}}
+{\footnotesize\ttfamily \#define SDA\+\_\+\+PIN~PINB}
+
+\mbox{\Hypertarget{ATtiny261_8h_ac47af8b0e510ef86f6b69e120ac7f9de}\label{ATtiny261_8h_ac47af8b0e510ef86f6b69e120ac7f9de}} 
+\index{ATtiny261.h@{ATtiny261.h}!SDA\_PORT@{SDA\_PORT}}
+\index{SDA\_PORT@{SDA\_PORT}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{SDA\_PORT}{SDA\_PORT}}
+{\footnotesize\ttfamily \#define SDA\+\_\+\+PORT~PORTB}
+
+\mbox{\Hypertarget{ATtiny261_8h_aa9feb9ed4d365dc62ead4e0e0127a636}\label{ATtiny261_8h_aa9feb9ed4d365dc62ead4e0e0127a636}} 
+\index{ATtiny261.h@{ATtiny261.h}!TICK\_TIME@{TICK\_TIME}}
+\index{TICK\_TIME@{TICK\_TIME}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{TICK\_TIME}{TICK\_TIME}}
+{\footnotesize\ttfamily \#define TICK\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{X }\end{DoxyParamCaption})~(System\+Tick)(X $\ast$ (F\+\_\+\+CPU / 1000) / 1024)}
+
+\mbox{\Hypertarget{ATtiny261_8h_acf7e0d539d44d095c89c144ad22ebd19}\label{ATtiny261_8h_acf7e0d539d44d095c89c144ad22ebd19}} 
+\index{ATtiny261.h@{ATtiny261.h}!USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION@{USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION}}
+\index{USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION@{USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION}{USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION}}
+{\footnotesize\ttfamily \#define USE\+\_\+\+TWI\+\_\+\+SLAVE\+\_\+\+TINY\+\_\+\+IMPLEMENTATION}
+
+\mbox{\Hypertarget{ATtiny261_8h_a3640e86d214909cd81a4b217a1693565}\label{ATtiny261_8h_a3640e86d214909cd81a4b217a1693565}} 
+\index{ATtiny261.h@{ATtiny261.h}!USI\_CONTROL@{USI\_CONTROL}}
+\index{USI\_CONTROL@{USI\_CONTROL}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USI\_CONTROL}{USI\_CONTROL}}
+{\footnotesize\ttfamily \#define USI\+\_\+\+CONTROL~USICR}
+
+\mbox{\Hypertarget{ATtiny261_8h_a5bc681228b3a965e8ce099ec77045448}\label{ATtiny261_8h_a5bc681228b3a965e8ce099ec77045448}} 
+\index{ATtiny261.h@{ATtiny261.h}!USI\_DATA@{USI\_DATA}}
+\index{USI\_DATA@{USI\_DATA}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USI\_DATA}{USI\_DATA}}
+{\footnotesize\ttfamily \#define USI\+\_\+\+DATA~USIDR}
+
+\mbox{\Hypertarget{ATtiny261_8h_a7e4537ab654b247f4faabc7b38f056ab}\label{ATtiny261_8h_a7e4537ab654b247f4faabc7b38f056ab}} 
+\index{ATtiny261.h@{ATtiny261.h}!USI\_OVERFLOW\_INTERRUPT@{USI\_OVERFLOW\_INTERRUPT}}
+\index{USI\_OVERFLOW\_INTERRUPT@{USI\_OVERFLOW\_INTERRUPT}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USI\_OVERFLOW\_INTERRUPT}{USI\_OVERFLOW\_INTERRUPT}}
+{\footnotesize\ttfamily \#define USI\+\_\+\+OVERFLOW\+\_\+\+INTERRUPT~USI\+\_\+\+OVF\+\_\+vect}
+
+\mbox{\Hypertarget{ATtiny261_8h_a4726446a51fd0ec00589e3f7a3ac2db6}\label{ATtiny261_8h_a4726446a51fd0ec00589e3f7a3ac2db6}} 
+\index{ATtiny261.h@{ATtiny261.h}!USI\_START\_INTERRUPT@{USI\_START\_INTERRUPT}}
+\index{USI\_START\_INTERRUPT@{USI\_START\_INTERRUPT}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USI\_START\_INTERRUPT}{USI\_START\_INTERRUPT}}
+{\footnotesize\ttfamily \#define USI\+\_\+\+START\+\_\+\+INTERRUPT~USI\+\_\+\+START\+\_\+vect}
+
+\mbox{\Hypertarget{ATtiny261_8h_a48f257631061b375375c401b07ea13da}\label{ATtiny261_8h_a48f257631061b375375c401b07ea13da}} 
+\index{ATtiny261.h@{ATtiny261.h}!USI\_STATUS@{USI\_STATUS}}
+\index{USI\_STATUS@{USI\_STATUS}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{USI\_STATUS}{USI\_STATUS}}
+{\footnotesize\ttfamily \#define USI\+\_\+\+STATUS~USISR}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}\label{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}} 
+\index{ATtiny261.h@{ATtiny261.h}!system\_tick\_t@{system\_tick\_t}}
+\index{system\_tick\_t@{system\_tick\_t}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{system\_tick\_t}{system\_tick\_t}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\+\_\+tick\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ATtiny261_8h_a2573781dcdeb21b82f54574ae060be82}\label{ATtiny261_8h_a2573781dcdeb21b82f54574ae060be82}} 
+\index{ATtiny261.h@{ATtiny261.h}!get\_time@{get\_time}}
+\index{get\_time@{get\_time}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{get\_time()}{get\_time()}}
+{\footnotesize\ttfamily get\+\_\+time (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This function takes the current state of the system timer and then returns it. Note, it pauses interrupts while it is running! 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                     \{}
+\DoxyCodeLine{50     \textcolor{comment}{/* Run this opetation atomic */}}
+\DoxyCodeLine{51     uint8\_t sreg = SREG;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     cli ();}
+\DoxyCodeLine{54     }
+\DoxyCodeLine{55     \mbox{\hyperlink{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} current\_time = TCNT0L;}
+\DoxyCodeLine{56     current\_time  |= ((uint8\_t) TCNT0H << 8);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     SREG = sreg;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordflow}{return} current\_time;}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ATtiny261_8h_a04d3f94da90f7ac1b018f80f321e86de}\label{ATtiny261_8h_a04d3f94da90f7ac1b018f80f321e86de}} 
+\index{ATtiny261.h@{ATtiny261.h}!ISR@{ISR}}
+\index{ISR@{ISR}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{ISR()}{ISR()}}
+{\footnotesize\ttfamily ISR (\begin{DoxyParamCaption}\item[{BADISR\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97 \{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ATtiny261_8h_a1f4227a7bd0a5e9386fabfe7d58a7183}\label{ATtiny261_8h_a1f4227a7bd0a5e9386fabfe7d58a7183}} 
+\index{ATtiny261.h@{ATtiny261.h}!platform\_init@{platform\_init}}
+\index{platform\_init@{platform\_init}!ATtiny261.h@{ATtiny261.h}}
+\doxysubsubsection{\texorpdfstring{platform\_init()}{platform\_init()}}
+{\footnotesize\ttfamily platform\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function is responsible for preparing the platform for the operating system to work, for example starting the system timer. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{37                                        \{}
+\DoxyCodeLine{38     \textcolor{comment}{/* Run timer in 16 bit mode */}}
+\DoxyCodeLine{39     TCCR0A = (1 << TCW0);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{comment}{/* And F\_CPU / 1024 Hz frequency */}}
+\DoxyCodeLine{42     TCCR0B = (1 << CS02) | (1 << CS00);}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}

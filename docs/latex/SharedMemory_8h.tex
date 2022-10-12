@@ -1,0 +1,176 @@
+\hypertarget{SharedMemory_8h}{}\doxysection{Susci/\+Synchronization/\+Shared\+Memory.h File Reference}
+\label{SharedMemory_8h}\index{Susci/Synchronization/SharedMemory.h@{Susci/Synchronization/SharedMemory.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\+\_\+\+MEMORY\+\_\+\+SIZE}}~8
+\item 
+\#define \mbox{\hyperlink{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}{SHARED\+\_\+\+MEMORY\+\_\+\+NULLPTR}}~\mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\+\_\+\+MEMORY\+\_\+\+SIZE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} \mbox{\hyperlink{SharedMemory_8h_ae82a1f0facfb6fca54185c11155f70e5}{create\+\_\+shared\+\_\+memory}} (void)
+\item 
+static void \mbox{\hyperlink{SharedMemory_8h_a8b79bf0a7b1932adfc1887080a27733f}{reset\+\_\+shared\+\_\+memory\+\_\+area}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared)
+\item 
+static void \mbox{\hyperlink{SharedMemory_8h_add8b13852d06f764e58738c763fe8695}{reset\+\_\+shared\+\_\+memory\+\_\+pointer}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared)
+\item 
+static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{SharedMemory_8h_a2855e388d05bf9428d4760346e0d4321}{is\+\_\+set\+\_\+shared\+\_\+memory\+\_\+pointer}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared)
+\item 
+static void \mbox{\hyperlink{SharedMemory_8h_a286a0bfa7dda06dff22eeaf8657ca9bb}{set\+\_\+shared\+\_\+memory\+\_\+pointer}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared, uint8\+\_\+t address)
+\item 
+static char \mbox{\hyperlink{SharedMemory_8h_aee24fd0818d8fcffa61fc7cfa9cb58af}{read\+\_\+shared\+\_\+memory\+\_\+area}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared, uint8\+\_\+t address)
+\item 
+static void \mbox{\hyperlink{SharedMemory_8h_a3527242c9c22fed8ec423fbb99af0235}{write\+\_\+shared\+\_\+memory\+\_\+area}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared, uint8\+\_\+t address, char data)
+\item 
+static char \mbox{\hyperlink{SharedMemory_8h_a641411dcbf897fcf7532b0eb45031f7a}{read\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared)
+\item 
+static void \mbox{\hyperlink{SharedMemory_8h_a6a235bd8a8017c2f9cc13030c0dcd5b1}{write\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$shared, char data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}\label{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}} 
+\index{SharedMemory.h@{SharedMemory.h}!SHARED\_MEMORY\_NULLPTR@{SHARED\_MEMORY\_NULLPTR}}
+\index{SHARED\_MEMORY\_NULLPTR@{SHARED\_MEMORY\_NULLPTR}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{SHARED\_MEMORY\_NULLPTR}{SHARED\_MEMORY\_NULLPTR}}
+{\footnotesize\ttfamily \#define SHARED\+\_\+\+MEMORY\+\_\+\+NULLPTR~\mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\+\_\+\+MEMORY\+\_\+\+SIZE}}}
+
+NULLPTR in shared memory. \mbox{\Hypertarget{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}\label{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}} 
+\index{SharedMemory.h@{SharedMemory.h}!SHARED\_MEMORY\_SIZE@{SHARED\_MEMORY\_SIZE}}
+\index{SHARED\_MEMORY\_SIZE@{SHARED\_MEMORY\_SIZE}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{SHARED\_MEMORY\_SIZE}{SHARED\_MEMORY\_SIZE}}
+{\footnotesize\ttfamily \#define SHARED\+\_\+\+MEMORY\+\_\+\+SIZE~8}
+
+Shared memory size in bytes. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{SharedMemory_8h_ae82a1f0facfb6fca54185c11155f70e5}\label{SharedMemory_8h_ae82a1f0facfb6fca54185c11155f70e5}} 
+\index{SharedMemory.h@{SharedMemory.h}!create\_shared\_memory@{create\_shared\_memory}}
+\index{create\_shared\_memory@{create\_shared\_memory}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{create\_shared\_memory()}{create\_shared\_memory()}}
+{\footnotesize\ttfamily create\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+This function create and return new Shared\+Memory with pointer set to null. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52                                                          \{}
+\DoxyCodeLine{53     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structshared__memory__t}{shared\_memory\_t}}) \{\mbox{\hyperlink{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}{SHARED\_MEMORY\_NULLPTR}}, \{0x00\}\};}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a2855e388d05bf9428d4760346e0d4321}\label{SharedMemory_8h_a2855e388d05bf9428d4760346e0d4321}} 
+\index{SharedMemory.h@{SharedMemory.h}!is\_set\_shared\_memory\_pointer@{is\_set\_shared\_memory\_pointer}}
+\index{is\_set\_shared\_memory\_pointer@{is\_set\_shared\_memory\_pointer}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{is\_set\_shared\_memory\_pointer()}{is\_set\_shared\_memory\_pointer()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{Types_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} is\+\_\+set\+\_\+shared\+\_\+memory\+\_\+pointer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{79                                                                          \{}
+\DoxyCodeLine{80     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{bool}) (shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} != \mbox{\hyperlink{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}{SHARED\_MEMORY\_NULLPTR}});}
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a641411dcbf897fcf7532b0eb45031f7a}\label{SharedMemory_8h_a641411dcbf897fcf7532b0eb45031f7a}} 
+\index{SharedMemory.h@{SharedMemory.h}!read\_shared\_memory@{read\_shared\_memory}}
+\index{read\_shared\_memory@{read\_shared\_memory}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{read\_shared\_memory()}{read\_shared\_memory()}}
+{\footnotesize\ttfamily static char read\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{126                                                         \{}
+\DoxyCodeLine{127     shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} = shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} \% \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{keywordflow}{return} shared-\/>\mbox{\hyperlink{structshared__memory__t_ad98142ae16dcdbc111b0d8a789b04509}{area}}[shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}}++];}
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_aee24fd0818d8fcffa61fc7cfa9cb58af}\label{SharedMemory_8h_aee24fd0818d8fcffa61fc7cfa9cb58af}} 
+\index{SharedMemory.h@{SharedMemory.h}!read\_shared\_memory\_area@{read\_shared\_memory\_area}}
+\index{read\_shared\_memory\_area@{read\_shared\_memory\_area}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{read\_shared\_memory\_area()}{read\_shared\_memory\_area()}}
+{\footnotesize\ttfamily static char read\+\_\+shared\+\_\+memory\+\_\+area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{103   \{}
+\DoxyCodeLine{104     \textcolor{keywordflow}{return} shared-\/>\mbox{\hyperlink{structshared__memory__t_ad98142ae16dcdbc111b0d8a789b04509}{area}}[address \% \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}}];}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a8b79bf0a7b1932adfc1887080a27733f}\label{SharedMemory_8h_a8b79bf0a7b1932adfc1887080a27733f}} 
+\index{SharedMemory.h@{SharedMemory.h}!reset\_shared\_memory\_area@{reset\_shared\_memory\_area}}
+\index{reset\_shared\_memory\_area@{reset\_shared\_memory\_area}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{reset\_shared\_memory\_area()}{reset\_shared\_memory\_area()}}
+{\footnotesize\ttfamily static void reset\+\_\+shared\+\_\+memory\+\_\+area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60                                                               \{}
+\DoxyCodeLine{61     \textcolor{keywordflow}{for} (uint8\_t pointer = 0; pointer < \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}}; ++ pointer)\{}
+\DoxyCodeLine{62         shared-\/>\mbox{\hyperlink{structshared__memory__t_ad98142ae16dcdbc111b0d8a789b04509}{area}}[pointer] = 0x00;}
+\DoxyCodeLine{63     \}}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_add8b13852d06f764e58738c763fe8695}\label{SharedMemory_8h_add8b13852d06f764e58738c763fe8695}} 
+\index{SharedMemory.h@{SharedMemory.h}!reset\_shared\_memory\_pointer@{reset\_shared\_memory\_pointer}}
+\index{reset\_shared\_memory\_pointer@{reset\_shared\_memory\_pointer}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{reset\_shared\_memory\_pointer()}{reset\_shared\_memory\_pointer()}}
+{\footnotesize\ttfamily static void reset\+\_\+shared\+\_\+memory\+\_\+pointer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{70                                                                         \{}
+\DoxyCodeLine{71     shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} = \mbox{\hyperlink{SharedMemory_8h_a4b69aeb3402bbfa6b1cf5a05f010c4e5}{SHARED\_MEMORY\_NULLPTR}};}
+\DoxyCodeLine{72 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a286a0bfa7dda06dff22eeaf8657ca9bb}\label{SharedMemory_8h_a286a0bfa7dda06dff22eeaf8657ca9bb}} 
+\index{SharedMemory.h@{SharedMemory.h}!set\_shared\_memory\_pointer@{set\_shared\_memory\_pointer}}
+\index{set\_shared\_memory\_pointer@{set\_shared\_memory\_pointer}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{set\_shared\_memory\_pointer()}{set\_shared\_memory\_pointer()}}
+{\footnotesize\ttfamily static void set\+\_\+shared\+\_\+memory\+\_\+pointer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{91   \{}
+\DoxyCodeLine{92     shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} = address \% \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}};}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a6a235bd8a8017c2f9cc13030c0dcd5b1}\label{SharedMemory_8h_a6a235bd8a8017c2f9cc13030c0dcd5b1}} 
+\index{SharedMemory.h@{SharedMemory.h}!write\_shared\_memory@{write\_shared\_memory}}
+\index{write\_shared\_memory@{write\_shared\_memory}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{write\_shared\_memory()}{write\_shared\_memory()}}
+{\footnotesize\ttfamily static void write\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared,  }\item[{char}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{138                                                                     \{}
+\DoxyCodeLine{139     shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} = shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}} \% \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     shared-\/>\mbox{\hyperlink{structshared__memory__t_ad98142ae16dcdbc111b0d8a789b04509}{area}}[shared-\/>\mbox{\hyperlink{structshared__memory__t_a3f8a1abaf15aa20a6df662d8032e5b15}{pointer}}++] = data;}
+\DoxyCodeLine{142 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{SharedMemory_8h_a3527242c9c22fed8ec423fbb99af0235}\label{SharedMemory_8h_a3527242c9c22fed8ec423fbb99af0235}} 
+\index{SharedMemory.h@{SharedMemory.h}!write\_shared\_memory\_area@{write\_shared\_memory\_area}}
+\index{write\_shared\_memory\_area@{write\_shared\_memory\_area}!SharedMemory.h@{SharedMemory.h}}
+\doxysubsubsection{\texorpdfstring{write\_shared\_memory\_area()}{write\_shared\_memory\_area()}}
+{\footnotesize\ttfamily static void write\+\_\+shared\+\_\+memory\+\_\+area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshared__memory__t}{shared\+\_\+memory\+\_\+t}} $\ast$}]{shared,  }\item[{uint8\+\_\+t}]{address,  }\item[{char}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117   \{}
+\DoxyCodeLine{118     shared-\/>\mbox{\hyperlink{structshared__memory__t_ad98142ae16dcdbc111b0d8a789b04509}{area}}[address \% \mbox{\hyperlink{SharedMemory_8h_a21a16aec41293c80beb10d71f79ad7a2}{SHARED\_MEMORY\_SIZE}}] = data;}
+\DoxyCodeLine{119 \}}
+
+\end{DoxyCode}

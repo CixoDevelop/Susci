@@ -1,0 +1,36 @@
+\hypertarget{Platform_8h_source}{}\doxysection{Platform.\+h}
+\label{Platform_8h_source}\index{Susci/Kernel/Platform.h@{Susci/Kernel/Platform.h}}
+\mbox{\hyperlink{Platform_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other }}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores declarations of functions that must be overwritten by the}}
+\DoxyCodeLine{14 \textcolor{comment}{ * port file for a given platform. It also sets the PLATFORM\_INCLUDE\_FLAG flag}}
+\DoxyCodeLine{15 \textcolor{comment}{ * without which the kernel will stop compiling because it needs to define an}}
+\DoxyCodeLine{16 \textcolor{comment}{ * platform dependent types.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef KERNEL\_PLATFORM\_H\_INCLUDED}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define KERNEL\_PLATFORM\_H\_INCLUDED}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{Platform_8h_a1f4227a7bd0a5e9386fabfe7d58a7183}{platform\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{34 \textcolor{keyword}{static} \mbox{\hyperlink{ATtiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} \mbox{\hyperlink{Platform_8h_a2573781dcdeb21b82f54574ae060be82}{get\_time}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define PLATFORM\_INCLUDE\_FLAG}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

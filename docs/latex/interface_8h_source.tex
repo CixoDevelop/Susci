@@ -1,0 +1,65 @@
+\hypertarget{interface_8h_source}{}\doxysection{interface.\+h}
+\label{interface_8h_source}\index{susci/kernel/interface.h@{susci/kernel/interface.h}}
+\mbox{\hyperlink{interface_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other }}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file stores all the interfaces needed by processes to communicate with}}
+\DoxyCodeLine{14 \textcolor{comment}{ * the system and with each other.}}
+\DoxyCodeLine{15 \textcolor{comment}{ */}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifndef KERNEL\_INTERFACE\_H\_INCLUDED}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define KERNEL\_INTERFACE\_H\_INCLUDED}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{25 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{interface_8h_a8e79d00047fa6200a633c3a09439fa29}{wait\_for\_signal}}(\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{26     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a1510c195e40c14d3f857d213f7c4b877}{SIGNAL\_STATE}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = (uint16\_t) \textcolor{keywordtype}{id};}
+\DoxyCodeLine{29 \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{36 \textcolor{keyword}{static} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{interface_8h_ac3c06213a7eef9b4473cb7e0264a337f}{to\_wait\_for\_signal}}(\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} process, \mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}} signal\_id) \{}
+\DoxyCodeLine{37     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state == \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a1510c195e40c14d3f857d213f7c4b877}{SIGNAL\_STATE}};}
+\DoxyCodeLine{40     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = (uint8\_t) signal\_id;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{49 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{interface_8h_a9170dd6b2979b456395c39bbfdbf9a84}{make\_signal}}(\mbox{\hyperlink{types_8h_aedfd99612f33cabeb5d2af288bcd95a5}{signal\_t}} signal\_id) \{}
+\DoxyCodeLine{50     \mbox{\hyperlink{scheduler_8h_ab12a07b51b2d02d031de0ad1489d6ac0}{current\_signal}}= signal\_id;}
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{56 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{interface_8h_a5c651fd7acdcc22ef48e2dc95d1570f4}{sleep}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{57     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}};}
+\DoxyCodeLine{58 \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64 \textcolor{keyword}{static} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{interface_8h_a771f9bb7934700048753caaa7eab14de}{to\_sleep}}(\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} process) \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state == \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854ae84991320294ae356ec5a01256f15e4e}{EMPTY\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{66     }
+\DoxyCodeLine{67     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}};}
+\DoxyCodeLine{68     }
+\DoxyCodeLine{69     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{70 \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{76 \textcolor{keyword}{static} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97}{exec\_state\_t}} \mbox{\hyperlink{interface_8h_a010c9f15ee0b48c696fcf5b3e71ea097}{wake\_up}}(\mbox{\hyperlink{types_8h_ab612a3a4eb0e2ced1e55ecff76260458}{pid\_t}} process) \{}
+\DoxyCodeLine{77     \textcolor{keywordflow}{if} (\mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].state != \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854aeef1e5da5619c1166a0f07353d33484c}{WAITING\_STATE}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a69337d8c64c1bf6f8006f9771da4bbb0}{PANIC\_STATE}};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}[process].\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a8f383efff27b80ddb4ab5ffd6acfe51e}{READY\_STATE}};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     \textcolor{keywordflow}{return} \mbox{\hyperlink{process_8h_aeccc645031be90ded0759d4192ce2a97a1501174ec155cb62cc1332781e9b7edf}{GOOD\_STATE}};}
+\DoxyCodeLine{82 \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

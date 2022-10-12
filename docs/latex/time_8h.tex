@@ -1,0 +1,69 @@
+\hypertarget{time_8h}{}\doxysection{susci/kernel/time.h File Reference}
+\label{time_8h}\index{susci/kernel/time.h@{susci/kernel/time.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{time_8h_ab3198b6e3699ff192caa2e0c0179a6ff}{wait}} (\mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\+\_\+tick\+\_\+t}} how\+\_\+long\+\_\+wait)
+\item 
+static void \mbox{\hyperlink{time_8h_a87e04c079eb92c9c848eca8c8819dd0c}{check\+\_\+timer\+\_\+processes}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{time_8h_a87e04c079eb92c9c848eca8c8819dd0c}\label{time_8h_a87e04c079eb92c9c848eca8c8819dd0c}} 
+\index{time.h@{time.h}!check\_timer\_processes@{check\_timer\_processes}}
+\index{check\_timer\_processes@{check\_timer\_processes}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{check\_timer\_processes()}{check\_timer\_processes()}}
+{\footnotesize\ttfamily check\+\_\+timer\+\_\+processes (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+A function that should only be called by the system loader is responsible for waking up dormant processes for a certain amount of time if that time has already expired. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42                                                \{}
+\DoxyCodeLine{43     \textcolor{keyword}{static} \mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} latest\_loop = 0x0;}
+\DoxyCodeLine{44     }
+\DoxyCodeLine{45     \mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} recent\_loop = latest\_loop;}
+\DoxyCodeLine{46     latest\_loop = \mbox{\hyperlink{platform_8h_a2573781dcdeb21b82f54574ae060be82}{get\_time}}();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordflow}{if} (recent\_loop == \mbox{\hyperlink{attiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}{MAX\_SYSTEM\_TIME}} \&\& recent\_loop > latest\_loop) \{}
+\DoxyCodeLine{49         recent\_loop = 0;}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordflow}{if} (recent\_loop > latest\_loop) \{}
+\DoxyCodeLine{53         latest\_loop = \mbox{\hyperlink{attiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}{MAX\_SYSTEM\_TIME}};}
+\DoxyCodeLine{54     \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \mbox{\hyperlink{structprocess__t}{process\_t}} *to\_wake\_up = \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}} + \mbox{\hyperlink{core_8c_a6f363716dc292fe43b665809b9f724e9}{PROCESS\_HEAP\_SIZE}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordflow}{while} (to\_wake\_up-\/-\/ > \mbox{\hyperlink{scheduler_8h_afac40b9e4d088dc1677596241e09279c}{process\_heap}}) \{}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (to\_wake\_up-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} != \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a5c51553606dc48acb370c3b60ca12035}{TIMER\_STATE}}) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{keywordflow}{if} (}
+\DoxyCodeLine{62             to\_wake\_up-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} >= recent\_loop }
+\DoxyCodeLine{63             \&\& to\_wake\_up-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} <= latest\_loop}
+\DoxyCodeLine{64         ) to\_wake\_up-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a8f383efff27b80ddb4ab5ffd6acfe51e}{READY\_STATE}};}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{time_8h_ab3198b6e3699ff192caa2e0c0179a6ff}\label{time_8h_ab3198b6e3699ff192caa2e0c0179a6ff}} 
+\index{time.h@{time.h}!wait@{wait}}
+\index{wait@{wait}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily static void wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\+\_\+tick\+\_\+t}}}]{how\+\_\+long\+\_\+wait }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24                                               \{}
+\DoxyCodeLine{25     \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a40e84a87e647e4e0f10f32668c8ed3ab}{state}} = \mbox{\hyperlink{process_8h_ab97efa0d1c4aeaf55ff756bf16685854a5c51553606dc48acb370c3b60ca12035}{TIMER\_STATE}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} actual\_time = \mbox{\hyperlink{platform_8h_a2573781dcdeb21b82f54574ae060be82}{get\_time}}();}
+\DoxyCodeLine{28     \mbox{\hyperlink{attiny261_8h_ae82a0396b3e81a46cd59bbe0d98089b8}{system\_tick\_t}} left\_to\_rewind = \mbox{\hyperlink{attiny261_8h_a2dd161bf85c6331fe6017ab48cf9577d}{MAX\_SYSTEM\_TIME}} -\/ actual\_time;}
+\DoxyCodeLine{29     }
+\DoxyCodeLine{30     \textcolor{keywordflow}{if} (left\_to\_rewind < how\_long\_wait) \{}
+\DoxyCodeLine{31         \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = how\_long\_wait -\/ left\_to\_rewind;}
+\DoxyCodeLine{32     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{33         \mbox{\hyperlink{scheduler_8h_a5778e355bd0a767b6843c2a209f8f7cc}{current\_process}}-\/>\mbox{\hyperlink{structprocess__t_a1f02cc30b8377640c1101c33e0bb8c7e}{scheduler\_context}} = actual\_time + how\_long\_wait;}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}

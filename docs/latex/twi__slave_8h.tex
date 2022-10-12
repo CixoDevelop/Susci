@@ -1,0 +1,212 @@
+\hypertarget{twi__slave_8h}{}\doxysection{susci/communication/twi\+\_\+slave.h File Reference}
+\label{twi__slave_8h}\index{susci/communication/twi\_slave.h@{susci/communication/twi\_slave.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtwi__interface__t}{twi\+\_\+interface\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{twi__slave_8h_a31fc5d7cb272f3882a457d8773cd99d2}{TWI\+\_\+\+SLAVE\+\_\+\+SEND\+\_\+\+SIGNAL}}~0x52
+\item 
+\#define \mbox{\hyperlink{twi__slave_8h_a2a48d07497b7b3f48d6c58161a7fd496}{TWI\+\_\+\+SLAVE\+\_\+\+RECEIVED\+\_\+\+SIGNAL}}~0x53
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}{twi\+\_\+transmission\+\_\+mode\+\_\+t}} \{ \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81a68a470c9a36fab44404714c9e199bb95}{WRITE\+\_\+\+MODE}} = 0
+, \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81aa2f18143cfa252aa4deb2736e690e8d2}{READ\+\_\+\+MODE}} = 1
+ \}
+\item 
+enum \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374bee}{twi\+\_\+state\+\_\+t}} \{ \newline
+\mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea40a067b9f249f5e6d1b1e55b667af2f5}{BUS\+\_\+\+OFF}} = 0
+, \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea3e53ce980daa48690f64a4f134446939}{VERYFI\+\_\+\+POLLED\+\_\+\+ADDRESS}} = 1
+, \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea895e26798f794751ec25362040907eb9}{SEND\+\_\+\+CONFIRMATION\+\_\+\+TO\+\_\+\+MASTER}} = 2
+, \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beeaefe5012c1c1c55aa4b3f3bee4035038c}{RECEIVE\+\_\+\+CONFIRMATION\+\_\+\+FROM\+\_\+\+MASTER}} = 3
+, \newline
+\mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beead5517cfca81f4033defb5eab40391b9d}{SEND\+\_\+\+DATA\+\_\+\+TO\+\_\+\+MASTER}} = 4
+, \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea4f30237239d595b6ffe2bcb42a53b76d}{RECEIVE\+\_\+\+DATA\+\_\+\+FROM\+\_\+\+MASTER}} = 5
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structtwi__interface__t}{twi\+\_\+interface\+\_\+t}} \mbox{\hyperlink{twi__slave_8h_acd6ed9c131d604351eb3697b2646eef1}{create\+\_\+twi\+\_\+interface}} (\mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}} address)
+\item 
+static \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}{twi\+\_\+transmission\+\_\+mode\+\_\+t}} \mbox{\hyperlink{twi__slave_8h_ae9ef2f7210aaf914b4bbbd8f2ae5729c}{get\+\_\+twi\+\_\+transmission\+\_\+mode}} (\mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}} frame)
+\item 
+static \mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}} \mbox{\hyperlink{twi__slave_8h_a91eea9af7cd81d4c23faa9164fef9b5d}{get\+\_\+twi\+\_\+control\+\_\+address}} (\mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}} frame)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{twi__slave_8h_a2a48d07497b7b3f48d6c58161a7fd496}\label{twi__slave_8h_a2a48d07497b7b3f48d6c58161a7fd496}} 
+\index{twi\_slave.h@{twi\_slave.h}!TWI\_SLAVE\_RECEIVED\_SIGNAL@{TWI\_SLAVE\_RECEIVED\_SIGNAL}}
+\index{TWI\_SLAVE\_RECEIVED\_SIGNAL@{TWI\_SLAVE\_RECEIVED\_SIGNAL}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{TWI\_SLAVE\_RECEIVED\_SIGNAL}{TWI\_SLAVE\_RECEIVED\_SIGNAL}}
+{\footnotesize\ttfamily \#define TWI\+\_\+\+SLAVE\+\_\+\+RECEIVED\+\_\+\+SIGNAL~0x53}
+
+This signal is handling when twi device received any data. \mbox{\Hypertarget{twi__slave_8h_a31fc5d7cb272f3882a457d8773cd99d2}\label{twi__slave_8h_a31fc5d7cb272f3882a457d8773cd99d2}} 
+\index{twi\_slave.h@{twi\_slave.h}!TWI\_SLAVE\_SEND\_SIGNAL@{TWI\_SLAVE\_SEND\_SIGNAL}}
+\index{TWI\_SLAVE\_SEND\_SIGNAL@{TWI\_SLAVE\_SEND\_SIGNAL}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{TWI\_SLAVE\_SEND\_SIGNAL}{TWI\_SLAVE\_SEND\_SIGNAL}}
+{\footnotesize\ttfamily \#define TWI\+\_\+\+SLAVE\+\_\+\+SEND\+\_\+\+SIGNAL~0x52}
+
+This signal is handling when twi device send any data to master. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{twi__slave_8h_ac380919adb9e45a01899199857367f7f}\label{twi__slave_8h_ac380919adb9e45a01899199857367f7f}} 
+\index{twi\_slave.h@{twi\_slave.h}!twi\_address\_t@{twi\_address\_t}}
+\index{twi\_address\_t@{twi\_address\_t}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{twi\_address\_t}{twi\_address\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}}}
+
+This type store device address. \mbox{\Hypertarget{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}\label{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}} 
+\index{twi\_slave.h@{twi\_slave.h}!twi\_frame\_t@{twi\_frame\_t}}
+\index{twi\_frame\_t@{twi\_frame\_t}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{twi\_frame\_t}{twi\_frame\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}}}
+
+This type store frame from TWI interface. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374bee}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374bee}} 
+\index{twi\_slave.h@{twi\_slave.h}!twi\_state\_t@{twi\_state\_t}}
+\index{twi\_state\_t@{twi\_state\_t}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{twi\_state\_t}{twi\_state\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374bee}{twi\+\_\+state\+\_\+t}}}
+
+Current TWI bus state, implementation does not have to use everyone \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUS\_OFF@{BUS\_OFF}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!BUS\_OFF@{BUS\_OFF}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beea40a067b9f249f5e6d1b1e55b667af2f5}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beea40a067b9f249f5e6d1b1e55b667af2f5}} 
+BUS\+\_\+\+OFF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VERYFI\_POLLED\_ADDRESS@{VERYFI\_POLLED\_ADDRESS}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!VERYFI\_POLLED\_ADDRESS@{VERYFI\_POLLED\_ADDRESS}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beea3e53ce980daa48690f64a4f134446939}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beea3e53ce980daa48690f64a4f134446939}} 
+VERYFI\+\_\+\+POLLED\+\_\+\+ADDRESS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEND\_CONFIRMATION\_TO\_MASTER@{SEND\_CONFIRMATION\_TO\_MASTER}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!SEND\_CONFIRMATION\_TO\_MASTER@{SEND\_CONFIRMATION\_TO\_MASTER}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beea895e26798f794751ec25362040907eb9}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beea895e26798f794751ec25362040907eb9}} 
+SEND\+\_\+\+CONFIRMATION\+\_\+\+TO\+\_\+\+MASTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RECEIVE\_CONFIRMATION\_FROM\_MASTER@{RECEIVE\_CONFIRMATION\_FROM\_MASTER}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!RECEIVE\_CONFIRMATION\_FROM\_MASTER@{RECEIVE\_CONFIRMATION\_FROM\_MASTER}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beeaefe5012c1c1c55aa4b3f3bee4035038c}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beeaefe5012c1c1c55aa4b3f3bee4035038c}} 
+RECEIVE\+\_\+\+CONFIRMATION\+\_\+\+FROM\+\_\+\+MASTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEND\_DATA\_TO\_MASTER@{SEND\_DATA\_TO\_MASTER}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!SEND\_DATA\_TO\_MASTER@{SEND\_DATA\_TO\_MASTER}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beead5517cfca81f4033defb5eab40391b9d}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beead5517cfca81f4033defb5eab40391b9d}} 
+SEND\+\_\+\+DATA\+\_\+\+TO\+\_\+\+MASTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RECEIVE\_DATA\_FROM\_MASTER@{RECEIVE\_DATA\_FROM\_MASTER}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!RECEIVE\_DATA\_FROM\_MASTER@{RECEIVE\_DATA\_FROM\_MASTER}}}\mbox{\Hypertarget{twi__slave_8h_aa3bf02997a714adac2761648ef374beea4f30237239d595b6ffe2bcb42a53b76d}\label{twi__slave_8h_aa3bf02997a714adac2761648ef374beea4f30237239d595b6ffe2bcb42a53b76d}} 
+RECEIVE\+\_\+\+DATA\+\_\+\+FROM\+\_\+\+MASTER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57              \{}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{comment}{/* If TWI bas is off, or other device polled */}}
+\DoxyCodeLine{60     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea40a067b9f249f5e6d1b1e55b667af2f5}{BUS\_OFF}} = 0,}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \textcolor{comment}{/* If TWI master polled device */}}
+\DoxyCodeLine{63     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea3e53ce980daa48690f64a4f134446939}{VERYFI\_POLLED\_ADDRESS}} = 1,}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{comment}{/* If slave device sending ACK to master */}}
+\DoxyCodeLine{66     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea895e26798f794751ec25362040907eb9}{SEND\_CONFIRMATION\_TO\_MASTER}} = 2,}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{comment}{/* If slave device receiving ACK or NACK from master */}}
+\DoxyCodeLine{69     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beeaefe5012c1c1c55aa4b3f3bee4035038c}{RECEIVE\_CONFIRMATION\_FROM\_MASTER}} = 3,}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{comment}{/* If slave device sending data to master */}}
+\DoxyCodeLine{72     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beead5517cfca81f4033defb5eab40391b9d}{SEND\_DATA\_TO\_MASTER}} = 4,}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{comment}{/* If slave device receiving data from master */}}
+\DoxyCodeLine{75     \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea4f30237239d595b6ffe2bcb42a53b76d}{RECEIVE\_DATA\_FROM\_MASTER}} = 5}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \} \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374bee}{twi\_state\_t}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}\label{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}} 
+\index{twi\_slave.h@{twi\_slave.h}!twi\_transmission\_mode\_t@{twi\_transmission\_mode\_t}}
+\index{twi\_transmission\_mode\_t@{twi\_transmission\_mode\_t}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{twi\_transmission\_mode\_t}{twi\_transmission\_mode\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}{twi\+\_\+transmission\+\_\+mode\+\_\+t}}}
+
+This enum store access mode \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WRITE\_MODE@{WRITE\_MODE}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!WRITE\_MODE@{WRITE\_MODE}}}\mbox{\Hypertarget{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81a68a470c9a36fab44404714c9e199bb95}\label{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81a68a470c9a36fab44404714c9e199bb95}} 
+WRITE\+\_\+\+MODE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_MODE@{READ\_MODE}!twi\_slave.h@{twi\_slave.h}}\index{twi\_slave.h@{twi\_slave.h}!READ\_MODE@{READ\_MODE}}}\mbox{\Hypertarget{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81aa2f18143cfa252aa4deb2736e690e8d2}\label{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81aa2f18143cfa252aa4deb2736e690e8d2}} 
+READ\+\_\+\+MODE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44              \{}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{comment}{/* If master want to send data to slave */}}
+\DoxyCodeLine{47     \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81a68a470c9a36fab44404714c9e199bb95}{WRITE\_MODE}} = 0,}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{comment}{/* If master want to receive data from slave */}}
+\DoxyCodeLine{50     \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81aa2f18143cfa252aa4deb2736e690e8d2}{READ\_MODE}} = 1}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \} \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}{twi\_transmission\_mode\_t}};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{twi__slave_8h_acd6ed9c131d604351eb3697b2646eef1}\label{twi__slave_8h_acd6ed9c131d604351eb3697b2646eef1}} 
+\index{twi\_slave.h@{twi\_slave.h}!create\_twi\_interface@{create\_twi\_interface}}
+\index{create\_twi\_interface@{create\_twi\_interface}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{create\_twi\_interface()}{create\_twi\_interface()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structtwi__interface__t}{twi\+\_\+interface\+\_\+t}} create\+\_\+twi\+\_\+interface (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}}}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100                                                                           \{}
+\DoxyCodeLine{101     \textcolor{keywordflow}{return} (\mbox{\hyperlink{structtwi__interface__t}{twi\_interface\_t}}) \{}
+\DoxyCodeLine{102         \mbox{\hyperlink{twi__slave_8h_aa3bf02997a714adac2761648ef374beea40a067b9f249f5e6d1b1e55b667af2f5}{BUS\_OFF}},}
+\DoxyCodeLine{103         address,}
+\DoxyCodeLine{104         \mbox{\hyperlink{shared__memory_8h_ae82a1f0facfb6fca54185c11155f70e5}{create\_shared\_memory}} ()}
+\DoxyCodeLine{105     \};}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{twi__slave_8h_a91eea9af7cd81d4c23faa9164fef9b5d}\label{twi__slave_8h_a91eea9af7cd81d4c23faa9164fef9b5d}} 
+\index{twi\_slave.h@{twi\_slave.h}!get\_twi\_control\_address@{get\_twi\_control\_address}}
+\index{get\_twi\_control\_address@{get\_twi\_control\_address}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{get\_twi\_control\_address()}{get\_twi\_control\_address()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\+\_\+address\+\_\+t}} get\+\_\+twi\+\_\+control\+\_\+address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}}}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{123                                                                         \{}
+\DoxyCodeLine{124     \textcolor{keywordflow}{return} (\mbox{\hyperlink{twi__slave_8h_ac380919adb9e45a01899199857367f7f}{twi\_address\_t}}) (frame >> 1);}
+\DoxyCodeLine{125 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{twi__slave_8h_ae9ef2f7210aaf914b4bbbd8f2ae5729c}\label{twi__slave_8h_ae9ef2f7210aaf914b4bbbd8f2ae5729c}} 
+\index{twi\_slave.h@{twi\_slave.h}!get\_twi\_transmission\_mode@{get\_twi\_transmission\_mode}}
+\index{get\_twi\_transmission\_mode@{get\_twi\_transmission\_mode}!twi\_slave.h@{twi\_slave.h}}
+\doxysubsubsection{\texorpdfstring{get\_twi\_transmission\_mode()}{get\_twi\_transmission\_mode()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{twi__slave_8h_afa067fe80c8f6cbe72f6d46439f1cb81}{twi\+\_\+transmission\+\_\+mode\+\_\+t}} get\+\_\+twi\+\_\+transmission\+\_\+mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{twi__slave_8h_ad91b9d60e30c453fc4b5ac09b6f4a123}{twi\+\_\+frame\+\_\+t}}}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115   \{}
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} frame \& 0x01;}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}

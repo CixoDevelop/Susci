@@ -1,0 +1,73 @@
+\hypertarget{kernel_8h_source}{}\doxysection{kernel.\+h}
+\label{kernel_8h_source}\index{susci/kernel.h@{susci/kernel.h}}
+\mbox{\hyperlink{kernel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * This file is part of the Susci project, an ultra lightweight general purpose}}
+\DoxyCodeLine{3 \textcolor{comment}{ * operating system aimed at devices without an MMU module and with very little}}
+\DoxyCodeLine{4 \textcolor{comment}{ * RAM memory.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * It is released under the terms of the MIT license, you can use Susca in your}}
+\DoxyCodeLine{7 \textcolor{comment}{ * projects, you just need to mention it in the documentation, manual or other}}
+\DoxyCodeLine{8 \textcolor{comment}{ * such place.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Author: Cixo}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * This file is responsible for including all the header files required by the}}
+\DoxyCodeLine{14 \textcolor{comment}{ * system with one include in project.}}
+\DoxyCodeLine{15 \textcolor{comment}{ */}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifndef SUSCI\_INCLUDED}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define SUSCI\_INCLUDED}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{/* If platform has not been included, abort compilation */}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef PLATFORM\_INCLUDE\_FLAG}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#error You must include your platform port file, before You include kernel!}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <CRITICAL\_ERROR>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/* Define system version and revision */}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define SUSCI\_VERSION 22.10}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define SUSCI\_REVISION 12}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{/* Include all system header files */}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{types_8h}{kernel/types.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{process_8h}{kernel/process.h}}"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{scheduler_8h}{kernel/scheduler.h}}"{}}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{interface_8h}{kernel/interface.h}}"{}}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{time_8h}{kernel/time.h}}"{}}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{loader_8h}{kernel/loader.h}}"{}}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{/* Include synchronization files */}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{buffer_8h}{synchronization/buffer.h}}"{}}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{semaphore_8h}{synchronization/semaphore.h}}"{}}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{circular__buffer_8h}{synchronization/circular\_buffer.h}}"{}}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{shared__memory_8h}{synchronization/shared\_memory.h}}"{}}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{latch_8h}{synchronization/latch.h}}"{}}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/* Include devices drivers */}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{shift__register_8h}{drivers/register/shift\_register.h}}"{}}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{/* Include interrupts */}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef PINCHANGE\_INTERRUPT\_AVR}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{avr__pinchange_8h}{drivers/integrated/avr\_pinchange.h}}"{}}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{/* Include Communication bus files */}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{/* Files for support TWI bus */}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef USE\_TWI\_SLAVE}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{twi__slave_8h}{communication/twi\_slave.h}}"{}}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{/* Platform file specifies implementation of TWI to use */}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef USE\_TWI\_SLAVE\_TINY\_IMPLEMENTATION}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{tiny__twi__slave_8h}{drivers/integrated/tiny\_twi\_slave.h}}"{}}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
