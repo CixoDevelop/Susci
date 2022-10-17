@@ -15,8 +15,14 @@
  * constitute the basis on which the TWI slave implementation is then placed.
  */
 
+#include "../settings.h"
+#include "../synchronization/shared_memory.h"
+#include "../kernel/types.h"
+
 #ifndef COMMUNICATION_TWI_SLAVE_H_INCLUDED 
 #define COMMUNICATION_TWI_SLAVE_H_INCLUDED 
+
+#ifdef USE_TWI_SLAVE
 
 /** \def TWI_SLAVE_SEND_SIGNAL
  * This signal is handling when twi device send any data to master.
@@ -124,5 +130,6 @@ static inline twi_address_t get_twi_control_address (twi_frame_t frame) {
     return (twi_address_t) (frame >> 1);
 }
 
+#endif
 
 #endif

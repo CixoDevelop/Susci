@@ -11,13 +11,18 @@ This project is an operating system for small non-MMU devices, currently mainly 
  * Clone this repo
  * You can remove LICENSE, README.md
  * Read core.c and select preferences
- * Write Your code in core.c and project/
- * Read descriptions and changes defaults values in make.sh
- * Build it with make.sh
+ * Write Your code in core.c
+ * Read descriptions and changes defaults values in susci/settings.h and Makefile
+ * Build it with make
  * Build docs with doxygen doxygen
  * For start writing read docs, if you can not mean any element, write to me!
 
-## Update 22.10 v12 changes (Latest)
+## Update 22.10 v17 changes (Latest)
+ * Improved formatting for better, more standard
+ * Improving the file structure, add .c and .h differences
+ * Add build system and config system
+
+## Update 22.10 v12 changes
  * Improved formatting for better, more standard
  * Improving the file structure
  * Documentation added (FINALLY AFTER LONG PROMISE)

@@ -17,15 +17,12 @@
 #ifndef SUSCI_INCLUDED
 #define SUSCI_INCLUDED
 
-/* If platform has not been included, abort compilation */
-#ifndef PLATFORM_INCLUDE_FLAG
-#error You must include your platform port file, before You include kernel!
-#include <CRITICAL_ERROR>
-#endif
+/* Your project settings */
+#include "settings.h"
 
 /* Define system version and revision */
 #define SUSCI_VERSION 22.10
-#define SUSCI_REVISION 12
+#define SUSCI_REVISION 17
 
 /* Include all system header files */
 #include "kernel/types.h"
@@ -42,26 +39,21 @@
 #include "synchronization/shared_memory.h"
 #include "synchronization/latch.h"
 
-/* Include devices drivers */
-#include "drivers/register/shift_register.h"
+/* Include ports */
+#include "platforms/avr.h"
 
-/* Include interrupts */
-#ifdef PINCHANGE_INTERRUPT_AVR
-#include "drivers/integrated/avr_pinchange.h"
-#endif
-
-/* Include Communication bus files */
-
-/* Files for support TWI bus */
-#ifdef USE_TWI_SLAVE
-
+/* Include drivers */
 #include "communication/twi_slave.h"
+#include "drivers/register/shift_register.h"
+#include "drivers/integrated/pinchange.h"
+#include "drivers/integrated/pins.h"
+#include "drivers/integrated/hardware_uart.h"
+#include "drivers/integrated/avr_usi_twi_slave.h"
+#include "drivers/integrated/avr_pins.h"
 
-/* Platform file specifies implementation of TWI to use */
-#ifdef USE_TWI_SLAVE_TINY_IMPLEMENTATION
-#include "drivers/integrated/tiny_twi_slave.h"
-#endif
-
+/* If platform has not been included, abort compilation */
+#ifndef PLATFORM_INCLUDE_FLAG
+#error You must include your platform port file in settings.h
 #endif
 
 #endif

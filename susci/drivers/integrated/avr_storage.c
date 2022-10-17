@@ -12,27 +12,21 @@
  *
  * This file stores driver that is responsible for storing data in eeprom.
  */
+ 
+#include "../../settings.h"
+#include "../../platforms/avr.h"
+#include "storage.h"
 
-#ifndef DRIVERS_INTEGRATED_AVRSTORAGE_H_INCLUDED
-#define DRIVERS_INTEGRATED_AVRSTORAGE_H_INCLUDED
+#ifdef USE_AVR_STORAGE
 
-/** \typedef address_t
- * Define address size. This id dependent on eeprom size, in
- * small devices 1 byte, in bigger devices 2 bytes 
- */
-
-#ifndef BYTE_EEPROM_ADDRESS
-typedef uint16_t address_t;
-#else
-typedef uint8_t address_t;
-#endif
+#include <avr/io.h>
 
 /** \fn storage_write
  * This write given byte to memory on specified address.
  * @address: Address to write data
  * @data: Data to write
  */
-static void storage_write(address_t address, char data) {
+void storage_write(address_t address, char data) {
     while (EECR & (1 << EEPE)) ;
 
     EECR = (0 << EEPM1) | (0 << EEPM0);
@@ -49,7 +43,7 @@ static void storage_write(address_t address, char data) {
  * parameter.
  * @address Address to read data from 
  */
-static char storage_read(address_t address) {
+char storage_read(address_t address) {
     while (EECR & (1 << EEPE)) ;
 
     EEAR = address;

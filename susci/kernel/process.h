@@ -14,6 +14,8 @@
  * processes in the system.
  */
 
+#include "types.h"
+
 #ifndef KERNEL_PROCESS_H_INCLUDED
 #define KERNEL_PROCESS_H_INCLUDED
 

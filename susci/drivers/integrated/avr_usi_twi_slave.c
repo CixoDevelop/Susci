@@ -19,8 +19,15 @@
  * redesign it a bit to better fit Susci.
  */
 
-#ifndef DRIVERS_INTEGRATED_TINY_TWI_SLAVE_H_INCLUDED
-#define DRIVERS_INTEGRATED_TINY_TWI_SLAVE_H_INCLUDED
+#include "../../settings.h"
+#include "../../platforms/avr.h"
+#include "../../kernel/interface.h"
+#include "avr_usi_twi_slave.h"
+
+#ifdef USE_AVR_USI_TWI_SLAVE
+
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 #define USI_ACK_DATA 0x00
 
@@ -32,7 +39,7 @@ twi_interface_t twi_slave;
 /** \fn usi_twi_set_input
  * This function set SDA pin to input state
  */
-inline static void usi_twi_set_input(void) {
+static inline void usi_twi_set_input(void) {
 	SDA_DDR &= ~SDA_MASK;
 }
 
@@ -40,7 +47,7 @@ inline static void usi_twi_set_input(void) {
  * This function set SDA pin to output state, but not set PORT from LOW
  * to HIGH, therefore you CAN NOT send data other than zero
  */
-inline static void usi_twi_set_output(void) {
+static inline void usi_twi_set_output(void) {
 	SDA_DDR |= SDA_MASK;
 }
 
@@ -49,7 +56,7 @@ inline static void usi_twi_set_output(void) {
  * just zero. Since it takes longer than usiTwiSetOutput () and the ACK bit
  * is zero, there is no need to invoke it when ACK is transmitted.
  */
-inline static void usi_twi_set_data_output(void) {
+static inline void usi_twi_set_data_output(void) {
     SDA_PORT |= SDA_MASK;
 }
 
@@ -57,7 +64,7 @@ inline static void usi_twi_set_data_output(void) {
  * This function restores PORT to the LOW state so that the PULL-UP resistor
  * does not interfere with the transmission.
  */
-inline static void usi_twi_set_data_input(void) {
+static inline void usi_twi_set_data_input(void) {
     SDA_PORT &= ~SDA_MASK;
 }
 
@@ -77,14 +84,14 @@ static inline void usi_twi_set_port(void) {
  * useful when checking whether there is a start condition or a stop
  * condition.
  */
-inline static bool usi_twi_wait_for_start_stop(void) {
+static inline bool usi_twi_wait_for_start_stop(void) {
     return (bool) (SCL_PIN & SCL_MASK) && !(SDA_PIN & SDA_MASK);
 }
 
 /** \fn usi_two_stop_come
  * Returns true if a stop condition is met.
  */
-inline static bool usi_twi_stop_come(void) {
+static inline bool usi_twi_stop_come(void) {
     return (bool) (SDA_PIN & SDA_MASK);
 }
 
@@ -92,7 +99,7 @@ inline static bool usi_twi_stop_come(void) {
  * This function configures the USI control register to the state it should
  * be when a stop condition occurs.
  */
-inline static void usi_twi_setup_control_stop(void) {
+static inline void usi_twi_setup_control_stop(void) {
     USI_CONTROL =
             (1 << USISIE) |
         	(0 << USIOIE) |
@@ -108,7 +115,7 @@ inline static void usi_twi_setup_control_stop(void) {
  * This function configures the USI control register to the state it should
  * be when a start condition occurs.
  */
-inline static void usi_twi_setup_control_start(void) {
+static inline void usi_twi_setup_control_start(void) {
     USI_CONTROL =
         	(1 << USISIE) |
         	(1 << USIOIE) |
@@ -173,7 +180,7 @@ static inline void usi_twi_send_confirmation(void) {
 /** \fn usi_twi_enable
  * Prepares the microcontroller and USI devices to work in the TWI bus.
  */
-static inline void usi_twi_enable(void) {
+void usi_twi_enable(void) {
     usi_twi_set_port();
 
     usi_twi_setup_control_start();

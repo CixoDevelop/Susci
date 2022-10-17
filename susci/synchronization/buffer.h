@@ -14,15 +14,11 @@
  * functions responsibles for working with standard system Buffer.
  */
 
+#include "../settings.h"
+#include "../kernel/types.h"
+
 #ifndef SYNCHRONIZATION_BUFFER_H_INCLUDED
 #define SYNCHRONIZATION_BUFFER_H_INCLUDED
-
-/** \def BUFFER_SIZE
- * Set default buffer size 
- */
-#ifndef BUFFER_SIZE
-    #define BUFFER_SIZE 8
-#endif
 
 /** \fn buffer_t
  * Struct for buffer.
@@ -81,25 +77,13 @@ static inline void reset_buffer(buffer_t *buffer) {
  * Return next char from buffer, must first check if buffer is readable.
  * @*buffer: Buffer object
  */
-static char read_buffer(buffer_t *buffer) {
-    char data = buffer->buffer[buffer->read_position ++];
-
-    if (all_data_read_from_buffer(buffer)) reset_buffer(buffer);
-
-    return data;
-}
+char read_buffer(buffer_t *buffer);
 
 /** \fn write_buffer
  * Write new data to buffer.
  * @*buffer: Buffer object
  * @data: New data to write
  */
-static bool write_buffer(buffer_t *buffer, char data) {
-    if (!is_buffer_writable(buffer)) return false;
-    
-    buffer->buffer[buffer->write_position ++] = data;
-    
-    return true;
-}
+bool write_buffer(buffer_t *buffer, char data);
 
 #endif

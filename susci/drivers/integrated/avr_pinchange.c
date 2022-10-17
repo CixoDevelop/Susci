@@ -13,23 +13,26 @@
  * This file stores driver for setting pinchange interrupt on specified pins.
  */
 
-#ifndef DRIVERS_INTEGRATED_PINCHANGE_H_INCLUDED
-#define DRIVERS_INTEGRATED_PINCHANGE_H_INCLUDED
+#include "../../settings.h"
+#include "../../platforms/avr.h"
+#include "../../kernel/types.h"
+#include "../../kernel/interface.h"
+#include "pinchange.h"
 
-/** \def PINCHANGE_SIGNAL
- * Signal in system to trigger on pinchange 
- */
-#define PINCHANGE_SIGNAL 0x20
+#ifdef USE_AVR_PINCHANGE
+
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 /** \fn setup_pinchange_on_pin
  * This function enable pinchange on specified pin.
  * @pin_number Number of pin
  */
-static void setup_pinchange_on_pin(pin_t pin_number) {
-    const volatile uint8_t *pcmask = LOW_PCMSK + (
+void setup_pinchange_on_pin(pin_t pin_number) {
+    volatile uint8_t *pcmask = LOW_PCMSK + (
 		((uint8_t) (pin_number)) / 8
 	);
-    const uint8_t mask = _BV (pin_number % 8);
+    uint8_t mask = _BV (pin_number % 8);
 
     *pcmask |= mask;
 }
@@ -38,7 +41,7 @@ static void setup_pinchange_on_pin(pin_t pin_number) {
  * This enable Pinchange interrupt in system. You must call them BEFORE 
  * setup pinchange on pins.
  */
-static inline void enable_pinchange_signal(void) {
+void enable_pinchange_signal(void) {
     #ifdef PCMSK0
     PCMSK0 = 0x00;
     GIMSK |= (1 << PCIE0);
@@ -69,36 +72,36 @@ static inline void enable_pinchange_signal(void) {
     GIMSK |= (1 << PCIE5);
     #endif
 
-    sei ();
+    sei();
 }
 
 /* For all PCINT_vect make PINCHANGE_SIGNAL in system */
 #ifdef PCINT_vect
-ISR (PCINT_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT0_vect
-ISR (PCINT0_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT0_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT1_vect
-ISR (PCINT1_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT1_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT2_vect
-ISR (PCINT2_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT2_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT3_vect
-ISR (PCINT3_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT3_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT4_vect
-ISR (PCINT4_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT4_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #ifdef PCINT5_vect
-ISR (PCINT5_vect) { makeSignal (PINCHANGE_SIGNAL); }
+ISR (PCINT5_vect) { make_signal (PINCHANGE_SIGNAL); }
 #endif
 
 #endif

@@ -15,30 +15,7 @@
  */
 
 #include "../kernel/types.h"
-
-#ifndef COMMUNICATION_SEMAPHORE_H_INCLUDED
-#define COMMUNICATION_SEMAPHORE_H_INCLUDED
-
-/** \struct semaphore_t
- * Type for Semaphore.
- */
-typedef struct {
-
-    /* Current semaphore state */
-    uint8_t state;
-
-    /* Max semaphore state */
-    uint8_t max_state;
-
-} semaphore_t;
-
-/** \fn create_semaphore
- * This function creating semaphore with max state, given in parameter.
- * @max_state Max semaphore state
- */
-static inline semaphore_t create_semaphore(uint8_t max_state) {
-    return (semaphore_t) {max_state, max_state};
-}
+#include "semaphore.h"
 
 /** \fn down_semaphore
  * This function cound down semaphore given in parameter. If can and 
@@ -46,7 +23,13 @@ static inline semaphore_t create_semaphore(uint8_t max_state) {
  * counting to down, default state is max state.
  * @*semaphore Semaphore object
  */
-bool down_semaphore(semaphore_t *semaphore);
+bool down_semaphore(semaphore_t *semaphore) {
+    if (semaphore->state == 0) return false;
+
+    semaphore->state --;
+
+    return true;
+}
 
 /** \fn up_semaphore
  * This function cound up semaphore given in parameter. If can and semaphore 
@@ -54,22 +37,10 @@ bool down_semaphore(semaphore_t *semaphore);
  * default state is max state.
  * @*semaphore Semaphore object
  */
-bool up_semaphore(semaphore_t *semaphore);
+bool up_semaphore(semaphore_t *semaphore) {
+    if (semaphore->state >= semaphore->max_state) return false;
+    
+    semaphore->state ++;
 
-/** \fn get_semaphore_state
- * This function return current semaphore state.
- * @*semaphore Semaphore object
- */
-static inline uint8_t get_semaphore_state(semaphore_t *semaphore) {
-    return semaphore->state;
+    return true;
 }
-
-/** \fn reset_semaphore
- * This function reset semaphore.
- * @*semaphore Semaphore object
- */
-static inline void reset_semaphore(semaphore_t *semaphore) {
-    semaphore->state = semaphore->max_state;
-}
-
-#endif

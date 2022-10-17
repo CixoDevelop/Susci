@@ -15,20 +15,26 @@
  * the functions susciBoot and susciPanic which are individual for the project.
  */
 
-#ifndef KERNEL_LOADER_H_INCLUDED
-#define KERNEL_LOADER_H_INCLUDED
+#include "../settings.h"
+#include "process.h"
+#include "scheduler.h"
+#include "time.h"
+#include "loader.h"
+#include "platform.h"
 
-/** \fn susci_boot
- * This function is called when the system is ready to create processes and
- * the platform is properly initialized. So write your own project 
- * initiation here.
+/** \fn main 
+ * Overwriting the function with the main system bootloader.
  */
-void susci_boot(void);
+int main(void) {
+    /* Init all modules */
+    platform_init();
+    scheduler_init();
+    susci_boot();
 
-/** \fn susci_panic
- * This function is run just before the processor freezes at the time of the
- * system failure, or if any of the processes returns a fatal error.
- */
-void susci_panic(void);
+    /* Run scheduler and timer */
+    while (scheduler_loop() == GOOD_STATE) check_timer_processes();
 
-#endif
+    /* Any process return PANIC_STATE, handle error */
+    susci_panic();
+    while (true);
+}

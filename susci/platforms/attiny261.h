@@ -13,51 +13,54 @@
  * This file stores data specific to the AVR ATtiny261 platform.
  */
 
+#include "../settings.h"
+
 #ifndef PLATFORMS_ATTINY261_H_INCLUDED
 #define PLATFORMS_ATTINY261_H_INCLUDED
 
-/* Include all standard libraries for AVR */
+#ifdef MCU_ATTINY_261
+
 #include <avr/io.h>
-#include <avr/interrupt.h>
 
-/* Define values for this platform */
-#define MAX_SYSTEM_TIME 65535
-#define TICK_TIME(X) (SystemTick)(X * (F_CPU / 1000) / 1024)
-
-typedef uint16_t system_tick_t;
-
-/* Include System plarform for override */
 #include "../kernel/platform.h"
 
-/** \fn platform_init
- * This function is responsible for preparing the platform for the operating
- * system to work, for example starting the system timer.
- */
-static inline void platform_init(void) {
-    /* Run timer in 16 bit mode */
-    TCCR0A = (1 << TCW0);
+#ifdef USE_HARDWARE_UART
+#define MCU_HAS_NOT_IT
+#endif
 
-    /* And F_CPU / 1024 Hz frequency */
-    TCCR0B = (1 << CS02) | (1 << CS00);
-}
+#ifdef USE_PINS
+#define USE_AVR_PINS
+#endif
 
-/** \fn get_time
- * This function takes the current state of the system timer and then returns
- * it. Note, it pauses interrupts while it is running!
- */
-static system_tick_t get_time(void) {
-    /* Run this opetation atomic */
-    uint8_t sreg = SREG;
+#ifdef USE_PINCHANGE
+#define USE_AVR_PINCHANGE
+#endif
 
-    cli ();
-    
-    system_tick_t current_time = TCNT0L;
-    current_time  |= ((uint8_t) TCNT0H << 8);
+#ifdef USE_TWI_SLAVE
+#define USI_DATA USIDR
+#define USI_CONTROL USICR
+#define USI_STATUS USISR
+#define SDA_PIN PINB
+#define SDA_PORT PORTB
+#define SDA_DDR DDRB
+#define SDA_MASK _BV (0)
+#define SCL_PIN PINB
+#define SCL_PORT PORTB
+#define SCL_DDR DDRB
+#define SCL_MASK _BV (2)
+#define USI_START_INTERRUPT USI_START_vect
+#define USI_OVERFLOW_INTERRUPT USI_OVF_vect
+#define USE_AVR_USI_TWI_SLAVE
+#define USE_AVR_USI_TWI_SLAVE
+#endif 
 
-    SREG = sreg;
+#ifdef USE_STORAGE
+#define BYTE_EEPROM_ADDRESS
+#define USE_AVR_STORAGE
+#endif
 
-    return current_time;
-}
+/* Define values for this platform */
+#define TICK_TIME(X) (SystemTick)(X * (F_CPU / 1000) / 1024)
 
 #define LOW_DDR &DDRB
 #define LOW_PIN &PINB
@@ -86,39 +89,6 @@ static system_tick_t get_time(void) {
 #define PIN_19 9
 #define PIN_20 8
 #endif
-
-#include "../drivers/integrated/avr_pins.h"
-
-#define BYTE_EEPROM_ADDRESS
-#include "../drivers/integrated/avr_storage.h"
-
-/* Catch bad ISR so no reset occurs */
-ISR (BADISR_vect) {}
-
-#ifdef USE_PINCHANGE_INTERRUPT
-#define PINCHANGE_INTERRUPT_AVR
-#endif
-
-#ifdef USE_TWI_SLAVE
-
-#define USI_DATA USIDR
-#define USI_CONTROL USICR
-#define USI_STATUS USISR
-
-#define SDA_PIN PINB
-#define SDA_PORT PORTB
-#define SDA_DDR DDRB
-#define SDA_MASK _BV (0)
-
-#define SCL_PIN PINB
-#define SCL_PORT PORTB
-#define SCL_DDR DDRB
-#define SCL_MASK _BV (2)
-
-#define USI_START_INTERRUPT USI_START_vect
-#define USI_OVERFLOW_INTERRUPT USI_OVF_vect
-
-#define USE_TWI_SLAVE_TINY_IMPLEMENTATION
 
 #endif
 

@@ -14,15 +14,11 @@
  * functions responsibles for CircularBuffer in system.
  */
 
+#include "../settings.h"
+#include "../kernel/types.h"
+
 #ifndef SYNCHRONIZATION_CIRCULAR_BUFFER_H_INCLUDED
 #define SYNCHRONIZATION_CIRCULAR_BUFFER_H_INCLUDED
-
-/** \def CIRCULAR_BUFFER_SIZE
- * Set default circular buffer size.
- */
-#ifndef CIRCULAR_BUFFER_SIZE
-    #define CIRCULAR_BUFFER_SIZE 8
-#endif
 
 /** \struct circular_buffer_t
  * Struct for circular buffer.
@@ -52,21 +48,12 @@ static inline circular_buffer_t create_circular_buffer(void) {
  * @*buffer: CircularBuffer object
  * @data: New data for buffer
  */
-static void write_circular_buffer(circular_buffer_t *buffer, char data) {
-    buffer->buffer[buffer->write_position++] = data;
-    buffer->write_position %= CIRCULAR_BUFFER_SIZE;
-}
+void write_circular_buffer(circular_buffer_t *buffer, char data);
 
 /** \fn read_circulat_buffer
  * Return data from buffer.
  * @*buffer: CircularBuffer object
  */
-static char read_circular_buffer(circular_buffer_t *buffer) {
-    char data = buffer->buffer[buffer->read_position++];
-    
-    buffer->read_position %= CIRCULAR_BUFFER_SIZE;
-
-    return data;
-}
+char read_circular_buffer(circular_buffer_t *buffer);
 
 #endif

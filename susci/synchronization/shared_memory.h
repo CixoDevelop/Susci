@@ -17,15 +17,11 @@
  * a pointer, it's optional.
  */
 
+#include "../settings.h"
+#include "../kernel/types.h"
+
 #ifndef COMMUNICATION_SHARED_MEMORY_H_INCLUDED
 #define COMMUNICATION_SHARED_MEMORY_H_INCLUDED
-
-/** \def SHARED_MEMORY_SIZE 
- * Shared memory size in bytes.
- */
-#ifndef SHARED_MEMORY_SIZE
-	#define SHARED_MEMORY_SIZE 8
-#endif
 
 /** \def SHARED_MEMORY_NULLPTR
  * NULLPTR in shared memory.
@@ -57,11 +53,8 @@ static inline shared_memory_t create_shared_memory(void) {
  * This function set all shared memory area to 0x00 and set pointer to null.
  * @*shared Pointer to shared memory for work on it
  */
-static void reset_shared_memory_area(shared_memory_t *shared) {
-	for (uint8_t pointer = 0; pointer < SHARED_MEMORY_SIZE; ++ pointer){
-		shared->area[pointer] = 0x00;
-    }
-}
+void reset_shared_memory_area(shared_memory_t *shared);
+
 
 /** \fn reset_shared_memory_pointer
  * This function set shared memory pointer to null.
@@ -123,11 +116,7 @@ static inline void write_shared_memory_area(
  * address and increment it after read.
  * @*shared Pointer to shared memory for work on it
  */
-static char read_shared_memory(shared_memory_t *shared) {
-	shared->pointer = shared->pointer % SHARED_MEMORY_SIZE;
-
-	return shared->area[shared->pointer++];
-}
+char read_shared_memory(shared_memory_t *shared);
 
 /** \fn write_shared_memory
  * This function write sequence values from shared memory using pointer as
@@ -135,10 +124,6 @@ static char read_shared_memory(shared_memory_t *shared) {
  * @*shared Pointer to shared memory for work on it
  * @data New data to write
  */
-static void write_shared_memory(shared_memory_t *shared, char data) {
-	shared->pointer = shared->pointer % SHARED_MEMORY_SIZE;
-
-	shared->area[shared->pointer++] = data;
-}
+void write_shared_memory(shared_memory_t *shared, char data);
 
 #endif

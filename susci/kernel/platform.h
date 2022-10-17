@@ -16,20 +16,23 @@
  * platform dependent types.
  */
 
+#include "time.h"
+
 #ifndef KERNEL_PLATFORM_H_INCLUDED
 #define KERNEL_PLATFORM_H_INCLUDED
+
 
 /** \fn platform_init
  * This function is responsible for preparing the platform for the operating
  * system to work, for example starting the system timer.
  */
-static inline void platform_init(void);
+void platform_init(void);
 
 /** \fn get_time
  * This function takes the current state of the system timer and then returns
  * it. Note, it pauses interrupts while it is running!
  */
-static system_tick_t get_time(void);
+system_tick_t get_time(void);
 
 /** \def PLATFORM_INCLUDE_FLAG
  * Sets a flag indicating that the platform file has been included.

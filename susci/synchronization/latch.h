@@ -13,6 +13,8 @@
  * This file stores data specific to the AVR ATtiny261 platform.
  */
 
+#include "../kernel/types.h"
+
 #ifndef SYNCHRONIZATION_LATCH_H_INCLUDED
 #define SYNCHRONIZATION_LATCH_H_INCLUDED
 
@@ -54,26 +56,15 @@ static inline latch_t create_latch(void) {
  * @*latch Latch object to operate on
  * @data New data to push
  */
-static bool push_latch(latch_t *latch, char data) {
-    if (latch->flag == SET_FLAG) return false;
-
-    latch->flag = SET_FLAG;
-    latch->data = data;
-
-    return true;
-}
+bool push_latch(latch_t *latch, char data);
 
 /*
  * This function pop data from latch.
  * @*latch Latch object to operate on
  */
-static char pop_latch(latch_t *latch) {
-    latch->flag = EMPTY_FLAG;
+char pop_latch(latch_t *latch);
 
-    return latch->data;
-}
-
-/** \fn get_latch_flag
+/** \fn get_latch_busy_flag
  * This function return latch flag.
  * @*latch: Latch object to operate on
  */
