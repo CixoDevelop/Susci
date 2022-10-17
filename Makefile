@@ -30,7 +30,7 @@ $(susci_object): %.o: %.c
 $(target): $(susci_object)
 	$(CC) $(CC_FLAGS) $(susci_object) $(source) -o $(target) 
 
-build:
+build: $(susci_object)
 	$(CC) $(CC_FLAGS) $(susci_object) $(source) -o $(target) 
 
 size: $(target)
