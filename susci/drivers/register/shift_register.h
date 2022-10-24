@@ -59,6 +59,38 @@ shift_register_t create_shift_register(
  */
 exec_state_t shift_register_driver(void *shift_register_pointer);
 
+/** \struct procedural_shift_register_t
+ * This is procedural shift register object struct.
+ */
+typedef struct {
+    pin_t da;
+    pin_t st_cp;
+    pin_t sh_cp;
+} procedural_shift_register_t;
+
+/** \fn create_procedural_shift_register
+ * This create object and prepare hardware for working with shift register.
+ * @da DA shift register pin
+ * @st_cp ST_CP shift register pin
+ * @sh_cp SH_CP shift register pin
+ */
+procedural_shift_register_t create_procedural_shift_register(
+    pin_t da, 
+    pin_t st_cp, 
+    pin_t sh_cp
+);
+
+/** \fn procedural_shift_register_driver
+ * This function send data to shift register procedural and just in time, no
+ * by process like shift_register_driver.
+ * @shift_register This is pointer to object
+ */
+void procedural_shift_register_driver(
+    procedural_shift_register_t *shift_register, 
+    char data,
+    bool commit
+);
+
 #endif
 
 #endif

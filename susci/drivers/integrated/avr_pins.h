@@ -71,33 +71,7 @@ static inline uint8_t create_pin_mask(
     return _BV(pin_number % 8);
 }
 
-/** \fn set_pin_direction
- * This set specified direction to specified pin. 
- * @pin_number Number of pin
- * @new_direction New pin direction
- */
-void set_pin_direction(pin_t pin_number, pin_direction_t new_direction);
-
-/** \fn set_pin_state
- * This set specified pin state to specified pin. Pin must be setup
- * as output.
- * @pin_number Number of pin
- * @new_state New pin state
- */
-void set_pin_state(pin_t pin_number, pin_state_t new_state);
-
-/** \fn get_pin_direction
- * This return current direction of pin specified in parameter.
- * @pin_number Number of pin
- */
-pin_direction_t get_pin_direction(pin_t pin_number);
-
-/** \fn get_pin_state
- * This return current state of pin specified in parameter.
- * @pin_number Number of pin
- */
-pin_state_t get_pin_state(pin_t pin_number);
-
 #endif
+
 
 #endif

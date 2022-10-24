@@ -97,4 +97,54 @@ exec_state_t shift_register_driver(void *shift_register_pointer) {
     return GOOD_STATE;
 }
 
+/** \fn create_procedural_shift_register
+ * This prepare shift register object in in memory.
+ * @da DA shift register pin
+ * @st_cp ST_CP shift register pin
+ * @sh_cp SH_CP shift register pin
+ */
+procedural_shift_register_t create_procedural_shift_register(
+    pin_t da, 
+    pin_t st_cp, 
+    pin_t sh_cp
+) {
+	/* Set pins as outputs and low state */
+    set_pin_state(da, LOW);
+    set_pin_state(st_cp, LOW);
+    set_pin_state(sh_cp, LOW);
+    
+    set_pin_direction(da, OUTPUT);
+    set_pin_direction(st_cp, OUTPUT);
+    set_pin_direction(sh_cp, OUTPUT);
+
+	/* New object */
+    return (procedural_shift_register_t) {da, st_cp, sh_cp};
+}
+
+/** \fn procedural_shift_register_driver
+ * This is service to manage shift register hardware.
+ * @*shift_register_pointer This is pointer to object
+ */
+void procedural_shift_register_driver(
+    procedural_shift_register_t *shift_register, 
+    char data,
+    bool commit
+) {
+    /*
+     * Send data in sequency. In the end up side down latch.
+     */
+    for (uint8_t bit = 8; bit > 0; -- bit) {
+        if (data & (1 << (bit - 1))) set_pin_state(shift_register->da, HIGH);
+        else set_pin_state(shift_register->da, LOW);
+
+        set_pin_state(shift_register->sh_cp, HIGH);
+        set_pin_state(shift_register->sh_cp, LOW);
+    }
+
+    if (commit) {
+        set_pin_state(shift_register->st_cp, HIGH);
+        set_pin_state(shift_register->st_cp, LOW);
+    }
+}
+
 #endif

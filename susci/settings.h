@@ -24,12 +24,12 @@
 /** \def USE_HARDWARE_UART
  * Uncomment if You want to use hardware uart.
  */
-#define USE_HARDWARE_UART
+//#define USE_HARDWARE_UART
 
 /** \def USE_PINS
  * Uncomment if You want to use pins.
  */
-#define USE_PINS
+//#define USE_PINS
 
 /** \def USE_PINCHANGE
  * Uncomment if You want to use pinchane interrrupt.
@@ -40,6 +40,11 @@
  * Uncomment if You want to use pinchane interrrupt.
  */
 //#define USE_TWI_SLAVE
+
+/** \def USE_ADC
+ * Uncommend if You want to use ADC.
+ */
+//#define USE_ADC
 
 /** \def TYPE_LAYOUT
  * Your MCU package configuration for PIN_x macros.

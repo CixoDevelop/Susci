@@ -132,9 +132,7 @@ static inline exec_state_t signal_scheduler(void) {
 		exec_state_t return_state 
 		= current_process->worker(current_process->parameter);
 
-		if (return_state == IDLE_STATE) continue;
-		
-		return return_state;
+		if (return_state == PANIC_STATE) return PANIC_STATE;
 	}
 
 	return GOOD_STATE;
