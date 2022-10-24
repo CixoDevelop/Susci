@@ -17,7 +17,13 @@ This project is an operating system for small non-MMU devices, currently mainly 
  * Build docs with doxygen doxygen
  * For start writing read docs, if you can not mean any element, write to me!
 
-## Update 22.10 v17 changes (Latest)
+## Update 22.10 v24 changes (Latest)
+ * Add more feautures for shifr registers in row
+ * Add ADC support
+ * Add ATmega328 support
+ * Fix error in signal scheduler
+
+## Update 22.10 v17 changes 
  * Improved formatting for better, more standard
  * Improving the file structure, add .c and .h differences
  * Add build system and config system
@@ -36,7 +42,7 @@ This project is an operating system for small non-MMU devices, currently mainly 
 ## Update 22.8 v18 changes
  * Addes shared memory 
  * Added TWI slave support
- * Added USI TWI slave implementation for AtTiny devices
+ * Added USI TWI slave implementation for ATtiny devices
  
 ## Update 22.7 v26 changes
  * Added semaphores (down counting)
